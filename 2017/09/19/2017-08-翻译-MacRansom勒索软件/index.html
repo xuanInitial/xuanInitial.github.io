@@ -95,13 +95,22 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="初见">
-<meta property="og:url" content="http://xuaninitial.com/index.html">
+<meta name="description" content="OSX/MacRansom原文链接： OSX/MacRansom 翻译：  初 见　　校对：  布兜儿 分析最近Mac上的勒索软件6/12/2017 想一起玩吗？我共享了恶意软件的二进制可执行文件(“macRansom”)，可以在这里下载 (密码:infect3d )。 请不要感染你自己的 Mac 背景周一快乐!今天我们有一些新的关于 MacOS 勒索软件的博客记录：） 由Fortinet公司的研">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2017-08-翻译-MacRansom勒索软件">
+<meta property="og:url" content="http://xuaninitial.com/2017/09/19/2017-08-翻译-MacRansom勒索软件/index.html">
 <meta property="og:site_name" content="初见">
+<meta property="og:description" content="OSX/MacRansom原文链接： OSX/MacRansom 翻译：  初 见　　校对：  布兜儿 分析最近Mac上的勒索软件6/12/2017 想一起玩吗？我共享了恶意软件的二进制可执行文件(“macRansom”)，可以在这里下载 (密码:infect3d )。 请不要感染你自己的 Mac 背景周一快乐!今天我们有一些新的关于 MacOS 勒索软件的博客记录：） 由Fortinet公司的研">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://xuaninitial.com/2017/09/19/2017-08-翻译-MacRansom勒索软件/bbAlert.png">
+<meta property="og:image" content="http://xuaninitial.com/2017/09/19/2017-08-翻译-MacRansom勒索软件/timeCheck.png">
+<meta property="og:image" content="http://xuaninitial.com/2017/09/19/2017-08-翻译-MacRansom勒索软件/ptrace.png">
+<meta property="og:image" content="http://xuaninitial.com/2017/09/19/2017-08-翻译-MacRansom勒索软件/rwAlert.png">
+<meta property="og:updated_time" content="2017-09-19T03:21:59.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="初见">
+<meta name="twitter:title" content="2017-08-翻译-MacRansom勒索软件">
+<meta name="twitter:description" content="OSX/MacRansom原文链接： OSX/MacRansom 翻译：  初 见　　校对：  布兜儿 分析最近Mac上的勒索软件6/12/2017 想一起玩吗？我共享了恶意软件的二进制可执行文件(“macRansom”)，可以在这里下载 (密码:infect3d )。 请不要感染你自己的 Mac 背景周一快乐!今天我们有一些新的关于 MacOS 勒索软件的博客记录：） 由Fortinet公司的研">
+<meta name="twitter:image" content="http://xuaninitial.com/2017/09/19/2017-08-翻译-MacRansom勒索软件/bbAlert.png">
 
 
 
@@ -131,13 +140,13 @@
 
 
 
-  <link rel="canonical" href="http://xuaninitial.com/"/>
+  <link rel="canonical" href="http://xuaninitial.com/2017/09/19/2017-08-翻译-MacRansom勒索软件/"/>
 
 
 
 
 
-  <title>初见</title>
+  <title>2017-08-翻译-MacRansom勒索软件 | 初见</title>
   
 
 
@@ -156,8 +165,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -260,9 +268,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -292,9 +300,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/19/2017-08-翻译-MacRansom勒索软件/" itemprop="url">2017-08-翻译-MacRansom勒索软件</a></h1>
+          <h1 class="post-title" itemprop="name headline">2017-08-翻译-MacRansom勒索软件</h1>
         
 
         <div class="post-meta">
@@ -344,9 +350,7 @@
       
 
       
-        
-          
-            <h2 id="OSX-MacRansom"><a href="#OSX-MacRansom" class="headerlink" title="OSX/MacRansom"></a>OSX/MacRansom</h2><p><strong>原文链接：</strong> <a href="https://objective-see.com/blog/blog_0x1E.html" target="_blank" rel="external">OSX/MacRansom</a></p>
+        <h2 id="OSX-MacRansom"><a href="#OSX-MacRansom" class="headerlink" title="OSX/MacRansom"></a>OSX/MacRansom</h2><p><strong>原文链接：</strong> <a href="https://objective-see.com/blog/blog_0x1E.html" target="_blank" rel="external">OSX/MacRansom</a></p>
 <p><strong>翻译：</strong>  初 见　　<strong>校对：</strong>  布兜儿</p>
 <h3 id="分析最近Mac上的勒索软件"><a href="#分析最近Mac上的勒索软件" class="headerlink" title="分析最近Mac上的勒索软件"></a>分析最近Mac上的勒索软件</h3><p>6/12/2017</p>
 <p>想一起玩吗？我共享了恶意软件的二进制可执行文件(“macRansom”)，可以在<a href="https://objective-see.com/downloads/malware/macRansom.zip" target="_blank" rel="external">这里</a>下载 (密码:<code>infect3d</code> )。</p>
@@ -425,8 +429,6 @@
 <p>一个plist文件：<code>~/Library/LaunchAgents/com.apple.finder.plist</code></p>
 <p>在这篇博文中，我们将拆解分析了 OSX / macransom - 一个基本的MacOS新勒索软件。幸运的是，有 BlockBlock 和 RansomWhere? 这样的防勒索软件，他们通常会检测勒索软件的持久性和加密。Kinda neat, huh? &lt;3</p>
 
-          
-        
       
     </div>
     
@@ -443,270 +445,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xuaninitial.com/2017/09/19/面试题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xuanInitial">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="初见">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/19/面试题/" itemprop="url">面试题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-19T09:36:47+08:00">
-                2017-09-19
-              </time>
+              <a href="/2017/09/19/面试题/" rel="next" title="面试题">
+                <i class="fa fa-chevron-left"></i> 面试题
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>1.Class 中包含属性 Name 如何定义为对外只读对内可读写?</p>
-<blockquote>
-<p>在头文件中将属性定义为readonly, 在.m文件中将属性重新定义为readwrite</p>
-</blockquote>
-<p>2.什么情况使用 weak 关键字，相比 assign 有什么不同?</p>
-<blockquote>
-<ol>
-<li>在 ARC 中,在有可能出现循环引用的时候,往往要通过让其中一端使用 weak 来解决,比如: delegate 代理属性</li>
-<li>自身已经对它进行一次强引用,没有必要再强引用一次,此时也会使用 weak,自定义 IBOutlet 控件属性一般也使用 weak；当然，也可以使用strong。在下文也有论述：</li>
-</ol>
-<p>不同点：</p>
-<ol>
-<li>weak 此特质表明该属性定义了一种“非拥有关系” (nonowning relationship)。为这种属性设置新值时，设置方法既不保留新值，也不释放旧值。此特质同assign类似，然而在属性所指的对象遭到摧毁时，属性值也会清空(nil out)。而 assign 的“设置方法”只会执行针对“纯量类型” (scalar type，例如 CGFloat 或 NSlnteger 等)的简单赋值操作。</li>
-<li>assigin 可以用非 OC 对象,而 weak 必须用于 OC 对象</li>
-</ol>
-</blockquote>
-<p>3.这个写法会出什么问题: @property (copy) NSMutableArray *array;</p>
-<blockquote>
-<p>添加,删除,修改数组内的元素的时候,程序会因为找不到对应的方法而崩溃。</p>
-<p>//如：-[__NSArrayI removeObjectAtIndex:]: unrecognized selector sent to instance 0x7fcd1bc30460</p>
-<p>// copy后返回的是不可变对象（即 arr 是 NSArray 类型，NSArray 类型对象不能调用 NSMutableArray 类型对象的方法）</p>
-<p>原因：是因为 copy 就是复制一个不可变 NSArray 的对象，不能对 NSArray 对象进行添加/修改。</p>
-</blockquote>
-<p>4.举例说明浅复制和深复制的区别?</p>
-<blockquote>
-<p>浅复制  你和你的影子  你挂了 他也挂了</p>
-<p>深复制 你和你的克隆体  你挂了 他还存在</p>
-<p>浅拷贝只是增加了一个指针指向已经存在的内存，而深拷贝就是增加一个指针并且申请一个新的内存，使这个增加的指针指向这个新的内存</p>
-</blockquote>
-<p>5.iOS 开发中数据持久性有哪几种?你用到哪些?</p>
-<blockquote>
-<p>据存储的核心都是写文件。</p>
-<ul>
-<li>属性列表：只有NSString、NSArray、NSDictionary、NSData可writeToFile；存储依旧是plist文件。plist文件可以存储的7中数据类型：array、dictionary、string、bool、data、date、number。</li>
-<li>对象序列化（对象归档）：对象序列化通过序列化的形式，键值关系存储到本地，转化成二进制流。通过runtime实现自动化归档/解档，请参考这个文章。实现NSCoding协议必须实现的两个方法：</li>
-<li>编码（对象序列化）：把不能直接存储到plist文件中得到数据，转化为二进制数据，NSData，可以存储到本地；</li>
-<li>解码（对象反序列化）：把二进制数据转化为本来的类型。</li>
-<li>SQLite 数据库：大量有规律的数据使用数据库。</li>
-<li>CoreData ：通过管理对象进行增、删、查、改操作的。它不是一个数据库，不仅可以使用SQLite数据库来保持数据，也可以使用其他的方式来存储数据。如：XML。</li>
-</ul>
-</blockquote>
-<p>6.UITableViewCell 上有个 UILabel，显示 NSTimer 实现的秒表时间，手指滚动 cell 过程中，label 是否刷新，为什么?</p>
-<blockquote>
-<p>这是否刷新取决于timer加入到Run Loop中的Mode是什么。Mode主要是用来指定事件在运行循环中的优先级的，分为：</p>
-<ul>
-<li>NSDefaultRunLoopMode（kCFRunLoopDefaultMode）：默认，空闲状态</li>
-<li>UITrackingRunLoopMode：ScrollView滑动时会切换到该Mode</li>
-<li>UIInitializationRunLoopMode：run loop启动时，会切换到该mode</li>
-<li>NSRunLoopCommonModes（kCFRunLoopCommonModes）：Mode集合</li>
-</ul>
-<p>苹果公开提供的Mode有两个：</p>
-<ul>
-<li>NSDefaultRunLoopMode（kCFRunLoopDefaultMode）</li>
-<li>NSRunLoopCommonModes（kCFRunLoopCommonModes）</li>
-<li>在编程中：如果我们把一个NSTimer对象以NSDefaultRunLoopMode（kCFRunLoopDefaultMode）添加到主运行循环中的时候, ScrollView滚动过程中会因为mode的切换，而导致NSTimer将不再被调度。当我们滚动的时候，也希望不调度，那就应该使用默认模式。但是，如果希望在滚动时，定时器也要回调，那就应该使用common mode。</li>
-</ul>
-</blockquote>
-<p>7.UIView 和 CALayer 之间的关系?</p>
-<blockquote>
-<ul>
-<li>每个 UIView 内部都有一个 CALayer 在背后提供内容的绘制和显示，并且 UIView 的尺寸样式都由内部的 Layer 所提供。两者都有树状层级结构，layer 内部有 SubLayers，View 内部有 SubViews.但是 Layer 比 View 多了个AnchorPoint</li>
-<li>在 View显示的时候，UIView 做为 Layer 的 CALayerDelegate,View 的显示内容由内部的 CALayer 的 display</li>
-<li>CALayer 是默认修改属性支持隐式动画的，在给 UIView 的 Layer 做动画的时候，View 作为 Layer 的代理，Layer  通过 actionForLayer:forKey:向 View请求相应的 action(动画行为)</li>
-<li>layer 内部维护着三分 layer tree,分别是 presentLayer Tree(动画树),modeLayer Tree(模型树), Render Tree (渲染树),在做 iOS动画的时候，我们修改动画的属性，在动画的其实是 Layer 的 presentLayer的属性值,而最终展示在界面上的其实是提供 View的modelLayer</li>
-<li>两者最明显的区别是 View可以接受并处理事件，而 Layer 不可以</li>
-</ul>
-</blockquote>
-<p>8.UIWebView 有哪些性能问题?有没有可替代的方案。</p>
-<blockquote>
-<p>使用UIWebView来显示图片和动态图，会占用很多内存，内存占用多了之后就会出现卡顿。如果播放的图片比较少占的内存比较小或者比较常用，可以选择用imageNamed:方式获取图片。</p>
-</blockquote>
-<p>9.有 a、b、c、d 4个异步请求，如何判断 a、b、c、d都完成执行?如果需要 a、b、c、d顺序执行，该如何实现?</p>
-<blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&gt; dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</div><div class="line">&gt;</div><div class="line">&gt; dispatch_group_t group = dispatch_group_create();</div><div class="line">&gt;</div><div class="line">&gt; dispatch_group_async(group, queue, ^&#123; /*任务a */ &#125;);</div><div class="line">&gt;</div><div class="line">&gt; dispatch_group_async(group, queue, ^&#123; /*任务b */ &#125;);</div><div class="line">&gt;</div><div class="line">&gt; dispatch_group_async(group, queue, ^&#123; /*任务c */ &#125;); </div><div class="line">&gt;</div><div class="line">&gt; dispatch_group_async(group, queue, ^&#123; /*任务d */ &#125;); </div><div class="line">&gt;</div><div class="line">&gt; dispatch_group_notify(group,dispatch_get_main_queue(), ^&#123;</div><div class="line">&gt;</div><div class="line">&gt;  // 在a、b、c、d异步执行完成后，会回调这里</div><div class="line">&gt;</div><div class="line">&gt; &#125;);</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-</blockquote>
-<p>&gt;</p>
-<blockquote>
-</blockquote>
-<p>10.Scoket 连接和 HTTP 连接的区别?</p>
-<blockquote>
-<ul>
-<li>HTTP是短连接，Socket(基于TCP协议的)是长连接。尽管HTTP1.1开始支持持久连接，但仍无法保证始终连接。而Socket连接一旦建立TCP三次握手，除非一方主动断开，否则连接状态一直保持。</li>
-<li>HTTP连接服务端无法主动发消息，Socket连接双方请求的发送先后限制。这点就比较重要了，因为它将决定二者分别适合应用在什么场景下。HTTP采用“请求-响应”机制，在客户端还没发送消息给服务端前，服务端无法推送消息给客户端。必须满足客户端发送消息在前，服务端回复在后。Socket连接双方类似peer2peer的关系，一方随时可以向另一方喊话。</li>
-</ul>
-</blockquote>
-<p>11.如何把一个包含自定义对象的数组序列化到磁盘?</p>
-<blockquote>
-<ul>
-<li>自定义对象需要实现NSCoding协议</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">&gt; - (void)viewDidLoad&#123;   </div><div class="line">&gt; 	[super viewDidLoad];   </div><div class="line">&gt; 	User user = [User new];   </div><div class="line">&gt; 	Acac= [Acnew];    </div><div class="line">&gt; 	NSArray userArray = @[user, account];    </div><div class="line">&gt; 	// 存到磁盘   </div><div class="line">&gt; 	NSData  tempArchive = [NSKeyedArchiver archivedDataWithRootObject: userArray];</div><div class="line">&gt; &#125;</div><div class="line">&gt;</div><div class="line">&gt; // 代理方法</div><div class="line">&gt; -(instancetype)initWithCoder:(NSCoder )coder&#123;   </div><div class="line">&gt; 	self = [super initWithCoder:coder];   </div><div class="line">&gt; 	if (self) &#123;       </div><div class="line">&gt; 		self.user = [aDecoder decodeObjectForKey:@&quot;user&quot;];        </div><div class="line">&gt; 		self.ac= [aDecoder decodeObjectForKey:@&quot;account&quot;];   </div><div class="line">&gt; 	&#125;   </div><div class="line">&gt; 	return self;</div><div class="line">&gt; &#125;</div><div class="line">&gt; // 代理方法</div><div class="line">&gt; -(void)encodeWithCoder:(NSCoder )aCoder&#123;   </div><div class="line">&gt; 	[aCoder encodeObject:self.user forKey:@&quot;user&quot;];   </div><div class="line">&gt; 	[aCoder encodeObject:self.acforKey:@&quot;account&quot;];</div><div class="line">&gt; &#125;</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-<p>或者</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&gt; +(BOOL)writeToPlistFile:(NSDictionary*)settings fileName:(NSString*)filename&#123;</div><div class="line">&gt;     </div><div class="line">&gt;     NSData * data = [NSKeyedArchiver archivedDataWithRootObject:settings];</div><div class="line">&gt;     NSArray * paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);</div><div class="line">&gt;     NSString * documentsDirectory = [paths objectAtIndex:0];</div><div class="line">&gt;     NSString * path = [documentsDirectory stringByAppendingPathComponent:filename];</div><div class="line">&gt;     BOOL didWriteSuccessfull = [data writeToFile:path atomically:YES];</div><div class="line">&gt;     return didWriteSuccessfull;</div><div class="line">&gt; &#125;</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-</blockquote>
-<p>12.iOS 的沙盒目录结构是怎样的? App Bundle 里面都有什么?</p>
-<blockquote>
-<p><strong>沙盒结构</strong></p>
-<ul>
-<li>Application：存放程序源文件，上架前经过数字签名，上架后不可修改</li>
-<li>Documents：常用目录，iCloud备份目录，存放数据,这里不能存缓存文件,否则上架不被通过</li>
-<li>Library<ul>
-<li>Caches：存放体积大又不需要备份的数据,SDWebImage缓存路径就是这个</li>
-<li>Preference：设置目录，iCloud会备份设置信息</li>
-</ul>
-</li>
-<li>tmp：存放临时文件，不会被备份，而且这个文件下的数据有可能随时被清除的可能</li>
-</ul>
-<p><strong>App Bundle</strong></p>
-<ul>
-<li>Info.plist:此文件包含了应用程序的配置信息.系统依赖此文件以获取应用程序的相关信息</li>
-<li>可执行文件:此文件包含应用程序的入口和通过静态连接到应用程序target的代码</li>
-<li>资源文件:图片,声音文件一类的</li>
-<li>其他:可以嵌入定制的数据资源</li>
-</ul>
-</blockquote>
-<p>13.如何把一张大图缩小为 1/4 大小的缩略图?</p>
-<blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt; UIImagePNGRepresentation(UIImage  __nonnull image);</div><div class="line">&gt; UIImageJPEGRepresentation(UIImage  __nonnull image, CGFloat compressionQuality);  </div><div class="line">&gt;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&gt; //等比例缩放图片</div><div class="line">&gt; +(UIImage *)cropImage:(UIImage *)image scale:(CGFloat)scale&#123;</div><div class="line">&gt; CGSize newSize = CGSizeMake(image.size.widthscale, image.size.heightscale);</div><div class="line">&gt;</div><div class="line">&gt; UIGraphicsBeginImageContext(newSize);</div><div class="line">&gt;</div><div class="line">&gt; [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];</div><div class="line">&gt;</div><div class="line">&gt; image = UIGraphicsGetImageFromCurrentImageContext();</div><div class="line">&gt;</div><div class="line">&gt; UIGraphicsEndImageContext();</div><div class="line">&gt;</div><div class="line">&gt; return image;</div><div class="line">&gt;</div><div class="line">&gt; &#125;</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-</blockquote>
-<p>14.Objective-C 的 class 是如何实现的?Selector 是如何被转化为 C 语言的函数调用的?</p>
-<blockquote>
-<p><code>Class</code>是一个<code>objc_class</code>结构类型的指针；</p>
-<p>类是通过<code>struct objc_class</code>结构实现的  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; typedef struct objc_class *Class;      		</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-</blockquote>
-<p>15.dispatch_async 与 dispatch_sync 解释一下?</p>
-<p>asyne 是异步   sync 是同步</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">NSLog(@&quot;1&quot;);</div><div class="line">dispatch_async(dispatch_get_main_queue(), ^&#123;</div><div class="line">     NSLog(@&quot;2&quot;);</div><div class="line">   &#125;);</div><div class="line"> NSLog(@“3”);</div></pre></td></tr></table></figure>
-<p>打印结果是?</p>
-<blockquote>
-<p>​    132            </p>
-</blockquote>
-<p>​       把 async 换成 sync 打印结果是?  </p>
-<blockquote>
-<p>打印结果是1  然后崩溃了（线程死锁）</p>
-<p>​    dispatch_async中加入dispatch_get_main_queue中，是异步运行中把主队列中的运行任务放到主线程中去运行。</p>
-<p>而dispatch_sync中的dispatch_get_main_queue,是在主线程中运行主队列，当把主队列中得任务放到主线程时，会和dispatch_sync进行线程争夺。这时就会产生线程死锁。   </p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -716,138 +476,11 @@
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xuaninitial.com/2017/09/16/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xuanInitial">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="初见">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/16/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-16T13:54:23+08:00">
-                2017-09-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -855,6 +488,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -875,8 +512,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           
             <img class="site-author-image" itemprop="image"
@@ -923,6 +569,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#OSX-MacRansom"><span class="nav-number">1.</span> <span class="nav-text">OSX/MacRansom</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分析最近Mac上的勒索软件"><span class="nav-number">1.1.</span> <span class="nav-text">分析最近Mac上的勒索软件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景"><span class="nav-number">1.1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分析"><span class="nav-number">1.1.2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结论"><span class="nav-number">1.1.3.</span> <span class="nav-text">结论</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1055,6 +717,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
 
   
 
