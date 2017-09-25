@@ -95,21 +95,21 @@
 
 
 
-<meta name="description" content="OSX/MacRansom原文链接： OSX/MacRansom 翻译：  初 见　　校对：  布兜儿 分析最近Mac上的勒索软件6/12/2017 &amp;lt;! – 想一起玩吗？我共享了恶意软件的二进制可执行文件(“macRansom”)，可以在这里下载 (密码:infect3d )。 请不要感染你自己的 Mac 背景周一快乐!今天我们有一些新的关于 MacOS 勒索软件的博客记录：） 由Fort">
+<meta name="description" content="OSX/MacRansom原文链接： OSX/MacRansom 翻译：  初 见　　校对：  布兜儿 分析最近Mac上的勒索软件6/12/2017 想一起玩吗？我共享了恶意软件的二进制可执行文件(“macRansom”)，可以在这里下载 (密码:infect3d )。 请不要感染你自己的 Mac 背景周一快乐!今天我们有一些新的关于 MacOS 勒索软件的博客记录：） 由Fortinet公司的研">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2017-08-翻译-MacRansom勒索软件">
 <meta property="og:url" content="http://xuaninitial.com/2017/09/19/2017-08-翻译-MacRansom勒索软件/index.html">
 <meta property="og:site_name" content="初见">
-<meta property="og:description" content="OSX/MacRansom原文链接： OSX/MacRansom 翻译：  初 见　　校对：  布兜儿 分析最近Mac上的勒索软件6/12/2017 &amp;lt;! – 想一起玩吗？我共享了恶意软件的二进制可执行文件(“macRansom”)，可以在这里下载 (密码:infect3d )。 请不要感染你自己的 Mac 背景周一快乐!今天我们有一些新的关于 MacOS 勒索软件的博客记录：） 由Fort">
+<meta property="og:description" content="OSX/MacRansom原文链接： OSX/MacRansom 翻译：  初 见　　校对：  布兜儿 分析最近Mac上的勒索软件6/12/2017 想一起玩吗？我共享了恶意软件的二进制可执行文件(“macRansom”)，可以在这里下载 (密码:infect3d )。 请不要感染你自己的 Mac 背景周一快乐!今天我们有一些新的关于 MacOS 勒索软件的博客记录：） 由Fortinet公司的研">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://xuaninitial.com/2017/09/19/2017-08-翻译-MacRansom勒索软件/bbAlert.png">
 <meta property="og:image" content="http://xuaninitial.com/2017/09/19/2017-08-翻译-MacRansom勒索软件/timeCheck.png">
 <meta property="og:image" content="http://xuaninitial.com/2017/09/19/2017-08-翻译-MacRansom勒索软件/ptrace.png">
 <meta property="og:image" content="http://xuaninitial.com/2017/09/19/2017-08-翻译-MacRansom勒索软件/rwAlert.png">
-<meta property="og:updated_time" content="2017-09-25T08:02:54.000Z">
+<meta property="og:updated_time" content="2017-09-25T08:08:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2017-08-翻译-MacRansom勒索软件">
-<meta name="twitter:description" content="OSX/MacRansom原文链接： OSX/MacRansom 翻译：  初 见　　校对：  布兜儿 分析最近Mac上的勒索软件6/12/2017 &amp;lt;! – 想一起玩吗？我共享了恶意软件的二进制可执行文件(“macRansom”)，可以在这里下载 (密码:infect3d )。 请不要感染你自己的 Mac 背景周一快乐!今天我们有一些新的关于 MacOS 勒索软件的博客记录：） 由Fort">
+<meta name="twitter:description" content="OSX/MacRansom原文链接： OSX/MacRansom 翻译：  初 见　　校对：  布兜儿 分析最近Mac上的勒索软件6/12/2017 想一起玩吗？我共享了恶意软件的二进制可执行文件(“macRansom”)，可以在这里下载 (密码:infect3d )。 请不要感染你自己的 Mac 背景周一快乐!今天我们有一些新的关于 MacOS 勒索软件的博客记录：） 由Fortinet公司的研">
 <meta name="twitter:image" content="http://xuaninitial.com/2017/09/19/2017-08-翻译-MacRansom勒索软件/bbAlert.png">
 
 
@@ -369,11 +369,11 @@
         <h2 id="OSX-MacRansom"><a href="#OSX-MacRansom" class="headerlink" title="OSX/MacRansom"></a>OSX/MacRansom</h2><p><strong>原文链接：</strong> <a href="https://objective-see.com/blog/blog_0x1E.html" target="_blank" rel="external">OSX/MacRansom</a></p>
 <p><strong>翻译：</strong>  初 见　　<strong>校对：</strong>  布兜儿</p>
 <h3 id="分析最近Mac上的勒索软件"><a href="#分析最近Mac上的勒索软件" class="headerlink" title="分析最近Mac上的勒索软件"></a>分析最近Mac上的勒索软件</h3><p>6/12/2017</p>
-<p>&lt;! – 想一起玩吗？我共享了恶意软件的二进制可执行文件(“macRansom”)，可以在<a href="https://objective-see.com/downloads/malware/macRansom.zip" target="_blank" rel="external">这里</a>下载 (密码:<code>infect3d</code> )。</p>
+<p>想一起玩吗？我共享了恶意软件的二进制可执行文件(“macRansom”)，可以在<a href="https://objective-see.com/downloads/malware/macRansom.zip" target="_blank" rel="external">这里</a>下载 (密码:<code>infect3d</code> )。</p>
 <p><strong>请不要感染你自己的 Mac</strong></p>
 <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>周一快乐!今天我们有一些新的关于 MacOS 勒索软件的博客记录：）</p>
 <p>由Fortinet公司的研究人员发现，Rommel Joven（<a href="https://twitter.com/rommeljoven17" target="_blank" rel="external">@rommeljoven17</a>）和Wayne Chin Yick Low（<a href="https://twitter.com/x9090" target="_blank" rel="external">@x9090</a>）发布的标题为<a href="https://blog.fortinet.com/2017/06/09/macransom-offered-as-ransomware-as-a-service" target="_blank" rel="external">“MacRansom最初的恶意软件：提供的勒索软件作为服务”</a>的文章。请阅读后再来这里！</p>
-<p>现在,我应该在白皮书上为我的<a href="https://www.virusbulletin.com/conference/vb2017/abstracts/offensive-malware-analysis-dissecting-osxfruitfly-custom-cc-server/" target="_blank" rel="external">VirusBulletin 2017 talk</a> 写点东西，好的，开门见山，时间是宝贵的。–&gt;</p>
+<p>现在,我应该在白皮书上为我的<a href="https://www.virusbulletin.com/conference/vb2017/abstracts/offensive-malware-analysis-dissecting-osxfruitfly-custom-cc-server/" target="_blank" rel="external">VirusBulletin 2017 talk</a> 写点东西，好的，开门见山，时间是宝贵的。</p>
 <h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><p>OSX / MacRansom 是一款相当差劲的勒索软件。从技术角度来看，它并不是特别先进。有趣的是,它的目标是 macOS，并“作为一项服务”来提供。老实说我不是100%肯定，后者意味着什么——但 Fortinet 提到了一个基于 TOR 的门户网站，并通过电子邮件与作者联系,以便定制恶意软件。我猜这是恶意软件作者提供的服务？</p>
 <p>不管怎样，来点技术细节吧！当恶意软件运行时（正如Fortinet的文章指出的），它进行各种反调试和反虚拟机检查。这些都是运行的基本，以及微不足道的：</p>
 <ul>
