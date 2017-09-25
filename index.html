@@ -361,7 +361,15 @@
         
           
           ssh准备连接远程服务器却遭提示”Permission denied (publickey)”1、首先确认有没有公钥
-1cat ~/
+1cat ~/.ssh/id_rsa.pub
+或者
+1cd ~/.ssh
+1ls
+看有没有文件
+2、如没有则按下述方法生成： 
+1ssh-keygen -t rsa
+一路回车…… 
+
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -504,7 +512,10 @@
 
 一路OK
 
-手机上用Safari  打开 网址  然后信任 
+手机上用Safari  打开 网址  然后信任  手机设置—&gt;通用—&gt;你添加的证书
+1http://charlesproxy.com/getssl
+
+选择Proxy-SSL Proxying Settin
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -641,7 +652,7 @@
       
         
           
-          一、tableview 留空1234567891011121314151617- (instancetype)initWithFra
+          一、tableview 留空1234567891011121314151617- (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style&#123;    self = [super initWithFrame:
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -780,7 +791,9 @@
           
           OSX/MacRansom原文链接： OSX/MacRansom
 翻译：  初 见　　校对：  布兜儿
-分析最近Mac上的勒索软件6
+分析最近Mac上的勒索软件6/12/2017
+&lt;! – 想一起玩吗？我共享了恶意软件的二进制可执行文件(“macRansom”)，可以在这里下载 (密码:infect3d )。
+请不要感染你
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -919,7 +932,12 @@
           
           1.Class 中包含属性 Name 如何定义为对外只读对内可读写?
 
-在头文件中将属性定义为readonly, 在.m文件中将属性
+在头文件中将属性定义为readonly, 在.m文件中将属性重新定义为readwrite
+
+2.什么情况使用 weak 关键字，相比 assign 有什么不同?
+
+
+在 ARC 中,在有可能出现循环引用的时候,往往要通过让其中一
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1057,7 +1075,9 @@
         
           
           历时3天 node npm nvm git  hexo      搭建完成了     熟悉的hello word
-Quick Sta
+Quick StartCreate a new post1$ hexo new "My New Post"
+More info: Writing
+Run server1$ hexo se
           ...
           <!--noindex-->
           <div class="post-button text-center">
