@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xuaninitial.com/"/>
-  <updated>2017-11-15T12:47:51.484Z</updated>
+  <updated>2017-11-24T04:04:03.943Z</updated>
   <id>http://xuaninitial.com/</id>
   
   <author>
@@ -15,6 +15,101 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>逆向学习笔记_1</title>
+    <link href="http://xuaninitial.com/2017/11/24/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/"/>
+    <id>http://xuaninitial.com/2017/11/24/逆向学习笔记-1/</id>
+    <published>2017-11-24T04:02:43.000Z</published>
+    <updated>2017-11-24T04:04:03.943Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>main</strong>函数</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">__attribute__((constructor)) static void entry() &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure><p>等价于</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#define CHConstructor static __attribute__((constructor)) void CHConcat(CHConstructor, __LINE__)()</div></pre></td></tr></table></figure><p>通过view的nextResponder方法，可以找出它所属的视图控制器ViewController</p><ul><li>内存地址＝进程内存基地址＋函数在二进制中的偏移量</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">br s -a &apos;0X00000000000E800+0x00000001017d7c6c&apos;</div></pre></td></tr></table></figure><ul><li>函数在二进制中的偏移量＝内存地址 - 进程内存基地址</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;strong&gt;main&lt;/strong&gt;函数&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;
+      
+    
+    </summary>
+    
+    
+      <category term="iOSRE" scheme="http://xuaninitial.com/tags/iOSRE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>UITableView卡顿问题处理</title>
+    <link href="http://xuaninitial.com/2017/11/24/UITableView%E5%8D%A1%E9%A1%BF%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/"/>
+    <id>http://xuaninitial.com/2017/11/24/UITableView卡顿问题处理/</id>
+    <published>2017-11-24T03:58:10.000Z</published>
+    <updated>2017-11-24T03:59:20.753Z</updated>
+    
+    <content type="html"><![CDATA[<p>1、</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;</div></pre></td></tr></table></figure><p>这个代理方法每次滑动都会调用 建议不要在里面做耗时操作</p><p>eg:重新计算高度</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CGSize strSize = [str boundingRectWithSize:CGSizeMake(BHSCREEN_W - 32, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@&#123;NSFontAttributeName:BH14Font&#125; context:nil].size;</div><div class="line">   return strSize.height+10;</div></pre></td></tr></table></figure><p>2、富文本串AttributeString的绘制也很耗时</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:str];</div><div class="line">           [AttributedStr addAttribute:NSFontAttributeName</div><div class="line"></div><div class="line">                                 value:[UIFont systemFontOfSize:16.0]</div><div class="line"></div><div class="line">                                 range:NSMakeRange(5, str.length-5)];</div><div class="line"></div><div class="line">           [AttributedStr addAttribute:NSForegroundColorAttributeName</div><div class="line"></div><div class="line">                                 value:[UIColor redColor]</div><div class="line"></div><div class="line">                                 range:NSMakeRange(5, str.length-5)];</div><div class="line"></div><div class="line">           _AmountPayableLabel.attributedText = AttributedStr;</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;1、&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div 
+      
+    
+    </summary>
+    
+    
+      <category term="Objective-C" scheme="http://xuaninitial.com/tags/Objective-C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>NSInteger32位64位问题</title>
+    <link href="http://xuaninitial.com/2017/11/24/NSInteger32%E4%BD%8D64%E4%BD%8D%E9%97%AE%E9%A2%98/"/>
+    <id>http://xuaninitial.com/2017/11/24/NSInteger32位64位问题/</id>
+    <published>2017-11-24T03:55:55.000Z</published>
+    <updated>2017-11-24T03:57:25.526Z</updated>
+    
+    <content type="html"><![CDATA[<p>64bit</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">orderNum = 1150815970118744;</div></pre></td></tr></table></figure><p>32bit</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">(lldb) po model.orderNum</div><div class="line">-1714505370</div><div class="line"></div><div class="line">(lldb)</div></pre></td></tr></table></figure><p>解决方式</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@property (nonatomic,copy) NSString * orderNum;</div></pre></td></tr></table></figure><p>原因：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#if __LP64__ || (TARGET_OS_EMBEDDED &amp;&amp; !TARGET_OS_IPHONE) || TARGET_OS_WIN32 || NS_BUILD_32_LIKE_64</div><div class="line">typedef long NSInteger;</div><div class="line">typedef unsigned long NSUInteger;</div><div class="line">#else</div><div class="line">typedef int NSInteger;</div><div class="line">typedef unsigned int NSUInteger;</div><div class="line">#endif</div></pre></td></tr></table></figure><p>NSInteger在32位时等同于int，在64位时等同于long</p><p>32bit下：</p><p>unsigned int 0～4294967295  </p><p>int -2147483648～2147483647 </p><p>long long的最大值：9223372036854775807<br>long long的最小值：-9223372036854775808</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;64bit&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;d
+      
+    
+    </summary>
+    
+    
+      <category term="Objective-C" scheme="http://xuaninitial.com/tags/Objective-C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Homebrew</title>
+    <link href="http://xuaninitial.com/2017/11/24/Homebrew/"/>
+    <id>http://xuaninitial.com/2017/11/24/Homebrew/</id>
+    <published>2017-11-24T03:51:08.000Z</published>
+    <updated>2017-11-24T03:53:05.724Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Homebrew"><a href="#Homebrew" class="headerlink" title="Homebrew"></a><a href="https://brew.sh/" target="_blank" rel="external">Homebrew</a></h1><p><a href="https://github.com/GoSSIP-SJTU/Armariris" target="_blank" rel="external">LLVM混淆框架</a></p><p>删除brew   </p><p>brew  cleanup</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Homebrew&quot;&gt;&lt;a href=&quot;#Homebrew&quot; class=&quot;headerlink&quot; title=&quot;Homebrew&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://brew.sh/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Home
+      
+    
+    </summary>
+    
+    
+      <category term="tools" scheme="http://xuaninitial.com/tags/tools/"/>
+    
+  </entry>
   
   <entry>
     <title>iTerm2配色</title>
