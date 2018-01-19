@@ -84,6 +84,8 @@
 
 
 
+  
+
 
   <link rel="alternate" href="/atom.xml" title="初见" type="application/atom+xml" />
 
@@ -111,7 +113,7 @@
 <meta property="og:image" content="http://xuaninitial.com/2018/01/18/配置Hikari中文文档/4.png">
 <meta property="og:image" content="http://xuaninitial.com/2018/01/18/配置Hikari中文文档/5.png">
 <meta property="og:image" content="http://xuaninitial.com/2018/01/18/配置Hikari中文文档/6.png">
-<meta property="og:updated_time" content="2018-01-18T10:57:23.157Z">
+<meta property="og:updated_time" content="2018-01-19T01:31:02.873Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="配置Hikari中文文档">
 <meta name="twitter:description" content="第一步：Clone https://github.com/Naville/Hikari.git 到本地 按照目录结构添加其他组件  Checkout Clang： 1cd ../Hikari 1cd Hikari/tools 1svn co http://llvm.org/svn/llvm-project/cfe/trunk clang -r 321064 ​ 报错  解释 12345678910">
@@ -405,7 +407,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cmake -G &quot;Ninja&quot; -DCMAKE_BUILD_TYPE=MinSizeRel -DLLVM_APPEND_VC_REV=on -DLLVM_CREATE_XCODE_TOOLCHAIN=on -DCMAKE_INSTALL_PREFIX=~/Library/Developer/ ../Hikari</div></pre></td></tr></table></figure>
 <p>执行到这步就算是上一步的成功</p>
 <img src="/2018/01/18/配置Hikari中文文档/4.png" alt="4.png" title="">
-<h4 id="第三步：执行"><a href="#第三步：执行" class="headerlink" title="第三步：执行"></a>第三步：执行</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ninja</div></pre></td></tr></table></figure>
+<h4 id="第三步：执行"><a href="#第三步：执行" class="headerlink" title="第三步：执行"></a>第三步：执行</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ninja install-xcode-toolchain</div></pre></td></tr></table></figure>
 <p>大概需要半个小时～1个小时,以及大概2.6gb的磁盘空间，等待结束。</p>
 <h4 id="第四步：Xcode集成"><a href="#第四步：Xcode集成" class="headerlink" title="第四步：Xcode集成"></a>第四步：<a href="https://github.com/Naville/Hikari/wiki/Intergrating-with-Xcode" target="_blank" rel="external">Xcode集成</a></h4><p>第一步中clone到本地的项目中<code>resources/Hikari.xcplugin</code> 复制到<code>/Applications/Xcode.app/Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/</code></p>
 <p>TARGETS—&gt;Build Settings—&gt;All   搜索<code>Enable Index-While-Building Functionality</code>  设置为<code>NO</code></p>
