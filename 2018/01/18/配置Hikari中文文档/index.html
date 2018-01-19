@@ -111,7 +111,7 @@
 <meta property="og:image" content="http://xuaninitial.com/2018/01/18/配置Hikari中文文档/4.png">
 <meta property="og:image" content="http://xuaninitial.com/2018/01/18/配置Hikari中文文档/5.png">
 <meta property="og:image" content="http://xuaninitial.com/2018/01/18/配置Hikari中文文档/6.png">
-<meta property="og:updated_time" content="2018-01-19T11:35:07.569Z">
+<meta property="og:updated_time" content="2018-01-19T11:36:45.674Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="配置Hikari中文文档">
 <meta name="twitter:description" content="第一步：Clone https://github.com/Naville/Hikari.git 到本地 按照目录结构添加其他组件  Checkout Clang： 1cd ../Hikari 1cd Hikari/tools 1svn co http://llvm.org/svn/llvm-project/cfe/trunk clang -r 321064 ​ 报错  解释 12345678910">
@@ -415,7 +415,8 @@
 <img src="/2018/01/18/配置Hikari中文文档/6.png" alt="6.png" title="">
 <p>把里HikariResources以上文件全部复制到<code>~/Hikari</code>(第一步clone的文件夹)里面</p>
 <h4 id="错误及解决方式"><a href="#错误及解决方式" class="headerlink" title="错误及解决方式"></a>错误及解决方式</h4><p>1、报错ld: file not found: /Library/Developer/Toolchains/Hikari.xctoolchain/<em>*</em></p>
-<p>解决方式：<a href="https://github.com/Naville/Hikari/releases" target="_blank" rel="external">下载Hikari-macOSToolchain-20180118.tar.gz</a> 并解压，把<code>/Users/initial/Downloads/Users/Naville/Library/Developer/Toolchains/</code>下的<code>Hikari.xctoolchain</code>  复制到 <code>/Applications/Xcode.app/Contents/Developer/Toolchains/</code>中</p>
+<p>解决方式：<a href="https://github.com/Naville/Hikari/releases" target="_blank" rel="external">下载Hikari-macOSToolchain-20180118.tar.gz</a> 并解压，把<code>/Users/initial/Downloads/Users/Naville/Library/Developer/Toolchains/</code>下的<code>Hikari.xctoolchain</code>  </p>
+<p>复制到<code>/Applications/Xcode.app/Contents/Developer/Toolchains/</code>中</p>
 <p>2、报错</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CMake Error: CMake was unable to find a build program corresponding to &quot;Ninja&quot;.  CMAKE_MAKE_PROGRAM is not set.  You probably need to select a different build tool.</div></pre></td></tr></table></figure>
 <p>解决方式：Ninja没装  需要安装 </p>
