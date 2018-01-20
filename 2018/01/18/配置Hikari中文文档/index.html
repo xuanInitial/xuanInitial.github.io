@@ -113,7 +113,7 @@
 <meta property="og:image" content="http://xuaninitial.com/2018/01/18/配置Hikari中文文档/2.jpeg">
 <meta property="og:image" content="http://xuaninitial.com/2018/01/18/配置Hikari中文文档/3.jpeg">
 <meta property="og:image" content="http://xuaninitial.com/2018/01/18/配置Hikari中文文档/7.jpeg">
-<meta property="og:updated_time" content="2018-01-20T02:38:50.164Z">
+<meta property="og:updated_time" content="2018-01-20T03:25:30.674Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="配置Hikari中文文档">
 <meta name="twitter:description" content="第一步：cloneClone https://github.com/Naville/Hikari.git 到本地 按照目录结构添加其他组件  Checkout Clang： 1cd ../Hikari 1cd Hikari/tools 1svn co http://llvm.org/svn/llvm-project/cfe/trunk clang -r 321064 Checkout LLD链接器">
@@ -430,14 +430,15 @@
 <img src="/2018/01/18/配置Hikari中文文档/7.jpeg" alt="7.jpeg" title="">
 <h5 id="4、报错找不到Ninja"><a href="#4、报错找不到Ninja" class="headerlink" title="4、报错找不到Ninja"></a>4、报错找不到Ninja</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CMake Error: CMake was unable to find a build program corresponding to &quot;Ninja&quot;.  CMAKE_MAKE_PROGRAM is not set.  You probably need to select a different build tool.</div></pre></td></tr></table></figure>
 <p>解决方式：Ninja没装  需要安装 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git clone git://github.com/ninja-build/ninja.git &amp;&amp; cd ninja</div><div class="line">$ git checkout release</div><div class="line">$ cat README</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ./configure.py --bootstrap</div></pre></td></tr></table></figure>
-<p>然后把生成的ninja复制到系统目录<code>/usr/bin</code></p>
+<p>执行（在安装Homebrew的前提下）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install ninja</div></pre></td></tr></table></figure>
+<p>如果没有安装Homebrew，执行下面代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</div></pre></td></tr></table></figure>
 <p>参考：</p>
 <p><a href="http://llvm.org/docs/GettingStarted.html#getting-started-quickly-a-summary" target="_blank" rel="external">LLVM系统入门</a></p>
 <p><a href="https://github.com/Naville/Hikari/wiki" target="_blank" rel="external"><strong>Hikari</strong>  wiki</a></p>
-<p><a href="https://www.jianshu.com/p/d118615c1943" target="_blank" rel="external">Ninja安装</a></p>
 <p><a href="https://ninja-build.org/" target="_blank" rel="external">Ninja</a></p>
+<p><a href="http://xuaninitial.com/2017/11/24/Homebrew/">Homebrew</a></p>
 
       
     </div>
