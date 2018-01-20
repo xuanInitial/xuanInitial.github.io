@@ -97,27 +97,18 @@
 
 
 
-<meta name="description" content="第一步：cloneClone https://github.com/Naville/Hikari.git 到本地 按照目录结构添加其他组件  Checkout Clang： 1cd ../Hikari 1cd Hikari/tools 1svn co http://llvm.org/svn/llvm-project/cfe/trunk clang -r 321064 Checkout LLD链接器">
+<meta name="description" content="本篇文章迁移到iosre 参考： LLVM系统入门 Hikari  wiki Ninja Homebrew">
 <meta name="keywords" content="tools">
 <meta property="og:type" content="article">
 <meta property="og:title" content="配置Hikari中文文档">
 <meta property="og:url" content="http://xuaninitial.com/2018/01/18/配置Hikari中文文档/index.html">
 <meta property="og:site_name" content="初见">
-<meta property="og:description" content="第一步：cloneClone https://github.com/Naville/Hikari.git 到本地 按照目录结构添加其他组件  Checkout Clang： 1cd ../Hikari 1cd Hikari/tools 1svn co http://llvm.org/svn/llvm-project/cfe/trunk clang -r 321064 Checkout LLD链接器">
+<meta property="og:description" content="本篇文章迁移到iosre 参考： LLVM系统入门 Hikari  wiki Ninja Homebrew">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://xuaninitial.com/2018/01/18/配置Hikari中文文档/1.png">
-<meta property="og:image" content="http://xuaninitial.com/2018/01/18/配置Hikari中文文档/8.png">
-<meta property="og:image" content="http://xuaninitial.com/2018/01/18/配置Hikari中文文档/4.png">
-<meta property="og:image" content="http://xuaninitial.com/2018/01/18/配置Hikari中文文档/5.png">
-<meta property="og:image" content="http://xuaninitial.com/2018/01/18/配置Hikari中文文档/6.png">
-<meta property="og:image" content="http://xuaninitial.com/2018/01/18/配置Hikari中文文档/2.jpeg">
-<meta property="og:image" content="http://xuaninitial.com/2018/01/18/配置Hikari中文文档/3.jpeg">
-<meta property="og:image" content="http://xuaninitial.com/2018/01/18/配置Hikari中文文档/7.jpeg">
-<meta property="og:updated_time" content="2018-01-20T03:25:30.674Z">
+<meta property="og:updated_time" content="2018-01-20T06:59:09.266Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="配置Hikari中文文档">
-<meta name="twitter:description" content="第一步：cloneClone https://github.com/Naville/Hikari.git 到本地 按照目录结构添加其他组件  Checkout Clang： 1cd ../Hikari 1cd Hikari/tools 1svn co http://llvm.org/svn/llvm-project/cfe/trunk clang -r 321064 Checkout LLD链接器">
-<meta name="twitter:image" content="http://xuaninitial.com/2018/01/18/配置Hikari中文文档/1.png">
+<meta name="twitter:description" content="本篇文章迁移到iosre 参考： LLVM系统入门 Hikari  wiki Ninja Homebrew">
 
 
 
@@ -373,67 +364,7 @@
       
 
       
-        <h4 id="第一步：clone"><a href="#第一步：clone" class="headerlink" title="第一步：clone"></a>第一步：clone</h4><p>Clone <code>https://github.com/Naville/Hikari.git</code> 到本地</p>
-<p>按照目录结构添加其他组件</p>
-<img src="/2018/01/18/配置Hikari中文文档/1.png" alt="1.png" title="">
-<p><strong>Checkout Clang</strong>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd ../Hikari</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd Hikari/tools</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">svn co http://llvm.org/svn/llvm-project/cfe/trunk clang -r 321064</div></pre></td></tr></table></figure>
-<p><strong>Checkout LLD链接器 </strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">svn co http://llvm.org/svn/llvm-project/lld/trunk lld -r 321064</div></pre></td></tr></table></figure>
-<p><strong>Checkout Compiler-RT</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd ../Hikari</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd Hikari/projects</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">svn co http://llvm.org/svn/llvm-project/compiler-rt/trunk compiler-rt -r 321064</div></pre></td></tr></table></figure>
-<p><strong>Checkout   libcxx和libcxxabi </strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd ../Hikari</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd Hikari/projects</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">svn co http://llvm.org/svn/llvm-project/libcxx/trunk libcxx -r 321064</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">svn co http://llvm.org/svn/llvm-project/libcxxabi/trunk libcxxabi -r 321064</div></pre></td></tr></table></figure>
-<h4 id="第二步：执行"><a href="#第二步：执行" class="headerlink" title="第二步：执行"></a>第二步：执行</h4><p>在Hikari同级目录下新建一个文件夹(笔者这边建的是Hikari_llvm)，然后执行</p>
-<img src="/2018/01/18/配置Hikari中文文档/8.png" alt="8.png" title="">
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cmake -G &quot;Ninja&quot; -DCMAKE_BUILD_TYPE=MinSizeRel -DLLVM_APPEND_VC_REV=on -DLLVM_CREATE_XCODE_TOOLCHAIN=on -DCMAKE_INSTALL_PREFIX=~/Library/Developer/ ../Hikari</div></pre></td></tr></table></figure>
-<blockquote>
-<p>../Hikari 是你第一次clone的主目录</p>
-</blockquote>
-<p>执行到这步就算是上一步的成功</p>
-<img src="/2018/01/18/配置Hikari中文文档/4.png" alt="4.png" title="">
-<h4 id="第三步：生成Hikari-xctoolchain"><a href="#第三步：生成Hikari-xctoolchain" class="headerlink" title="第三步：生成Hikari.xctoolchain"></a>第三步：生成Hikari.xctoolchain</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ninja install-xcode-toolchain</div></pre></td></tr></table></figure>
-<p>大概需要半个小时～1个小时,以及大概2.6gb的磁盘空间，等待结束。</p>
-<h4 id="第四步：Xcode集成"><a href="#第四步：Xcode集成" class="headerlink" title="第四步：Xcode集成"></a>第四步：<a href="https://github.com/Naville/Hikari/wiki/Intergrating-with-Xcode" target="_blank" rel="external">Xcode集成</a></h4><p>第一步中clone到本地的项目中<code>resources/Hikari.xcplugin</code> 复制到<code>/Applications/Xcode.app/Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/</code></p>
-<p>TARGETS—&gt;Build Settings—&gt;All   搜索<code>Enable Index-While-Building Functionality</code>  设置为<code>NO</code></p>
-<p>然后在<code>Xcode-&gt;Toolchains</code> ，选择Hikari</p>
-<img src="/2018/01/18/配置Hikari中文文档/5.png" alt="5.png" title="">
-<h4 id="第五步：pass配置"><a href="#第五步：pass配置" class="headerlink" title="第五步：pass配置"></a>第五步：pass配置</h4><p><a href="https://github.com/Naville/Hikari-Resources" target="_blank" rel="external">clone配置</a> </p>
-<img src="/2018/01/18/配置Hikari中文文档/6.png" alt="6.png" title="">
-<p>把里HikariResources以上文件全部复制到<code>~/Hikari</code>(第一步clone的文件夹)里面</p>
-<h4 id="错误及解决方式"><a href="#错误及解决方式" class="headerlink" title="错误及解决方式"></a>错误及解决方式</h4><h5 id="1、报错锁定"><a href="#1、报错锁定" class="headerlink" title="1、报错锁定"></a>1、报错锁定</h5><img src="/2018/01/18/配置Hikari中文文档/2.jpeg" alt="2.jpeg" title="">
-<p>解释</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line">cleanup: Recursively clean up the working copy, removing write locks, resuming</div><div class="line">unfinished operations, etc.</div><div class="line">usage: cleanup [WCPATH...]</div><div class="line"></div><div class="line">  By default, finish any unfinished business in the working copy at WCPATH,</div><div class="line">  and remove write locks (shown as &apos;L&apos; by the &apos;svn status&apos; command) from</div><div class="line">  the working copy. Usually, this is only necessary if a Subversion client</div><div class="line">  has crashed while using the working copy, leaving it in an unusable state.</div><div class="line"></div><div class="line">  WARNING: There is no mechanism that will protect write locks still</div><div class="line">           being used by other Subversion clients. Running this command</div><div class="line">           while another client is using the working copy can corrupt</div><div class="line">           the working copy beyond repair!</div><div class="line"></div><div class="line">  If the --remove-unversioned option or the --remove-ignored option</div><div class="line">  is given, remove any unversioned or ignored items within WCPATH.</div><div class="line">  To prevent accidental working copy corruption, unversioned or ignored</div><div class="line">  items can only be removed if the working copy is not already locked</div><div class="line">  for writing by another Subversion client.</div><div class="line">  Note that the &apos;svn status&apos; command shows unversioned items as &apos;?&apos;,</div><div class="line">  and ignored items as &apos;I&apos; if the --no-ignore option is given to it.</div><div class="line"></div><div class="line">Valid options:</div><div class="line">  --diff3-cmd ARG          : use ARG as merge command</div><div class="line">  --remove-unversioned     : remove unversioned items</div><div class="line">  --remove-ignored         : remove ignored items</div><div class="line">  --include-externals      : also operate on externals defined by</div><div class="line">                             svn:externals properties</div><div class="line">  -q [--quiet]             : print nothing, or only summary information</div><div class="line"></div><div class="line">Global options:</div><div class="line">  --username ARG           : specify a username ARG</div><div class="line">  --password ARG           : specify a password ARG (caution: on many operating</div><div class="line">                             systems, other users will be able to see this)</div><div class="line">  --no-auth-cache          : do not cache authentication tokens</div><div class="line">  --non-interactive        : do no interactive prompting (default is to prompt</div><div class="line">                             only if standard input is a terminal device)</div><div class="line">  --force-interactive      : do interactive prompting even if standard input</div><div class="line">                             is not a terminal device</div><div class="line">  --trust-server-cert      : deprecated; same as</div><div class="line">                             --trust-server-cert-failures=unknown-ca</div><div class="line">  --trust-server-cert-failures ARG : with --non-interactive, accept SSL server</div><div class="line">                             certificates with failures; ARG is comma-separated</div><div class="line">                             list of &apos;unknown-ca&apos; (Unknown Authority),</div><div class="line">                             &apos;cn-mismatch&apos; (Hostname mismatch), &apos;expired&apos;</div><div class="line">                             (Expired certificate), &apos;not-yet-valid&apos; (Not yet</div><div class="line">                             valid certificate) and &apos;other&apos; (all other not</div><div class="line">                             separately classified certificate errors).</div><div class="line">  --config-dir ARG         : read user configuration files from directory ARG</div><div class="line">  --config-option ARG      : set user configuration option in the format:</div><div class="line">                                 FILE:SECTION:OPTION=[VALUE]</div><div class="line">                             For example:</div><div class="line">                                 servers:global:http-library=serf</div></pre></td></tr></table></figure>
-<p>解决办法: 删除tools/clang</p>
-<p>重新执行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">svn co http://llvm.org/svn/llvm-project/cfe/trunk clang -r 321064</div></pre></td></tr></table></figure>
-<h5 id="2、报错"><a href="#2、报错" class="headerlink" title="2、报错"></a>2、报错</h5><img src="/2018/01/18/配置Hikari中文文档/3.jpeg" alt="3.jpeg" title="">
-<p>解决办法：删除CMakeCache.txt 和CMakeFiles文件夹</p>
-<p>再次执行<strong>第二步</strong></p>
-<h5 id="3、报错ld-file-not-found-Library-Developer-Toolchains-Hikari-xctoolchain"><a href="#3、报错ld-file-not-found-Library-Developer-Toolchains-Hikari-xctoolchain" class="headerlink" title="3、报错ld: file not found: /Library/Developer/Toolchains/Hikari.xctoolchain/*"></a>3、报错ld: file not found: /Library/Developer/Toolchains/Hikari.xctoolchain/<em>*</em></h5><p>解决方式：</p>
-<ul>
-<li>打开<code>~/Library/Developer/Toolchains/Hikari.xctoolchain</code>显示包内容</li>
-<li>打开</li>
-</ul>
-<p><code>/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain</code> 显示包内容</p>
-<ul>
-<li>对比<code>Hikari.xctoolchain</code>与<code>XcodeDefault.xctoolchain</code>下有哪些文件夹缺失，然后复制</li>
-</ul>
-<p><strong>注意放到对应的文件目录下</strong></p>
-<img src="/2018/01/18/配置Hikari中文文档/7.jpeg" alt="7.jpeg" title="">
-<h5 id="4、报错找不到Ninja"><a href="#4、报错找不到Ninja" class="headerlink" title="4、报错找不到Ninja"></a>4、报错找不到Ninja</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CMake Error: CMake was unable to find a build program corresponding to &quot;Ninja&quot;.  CMAKE_MAKE_PROGRAM is not set.  You probably need to select a different build tool.</div></pre></td></tr></table></figure>
-<p>解决方式：Ninja没装  需要安装 </p>
-<p>执行（在安装Homebrew的前提下）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install ninja</div></pre></td></tr></table></figure>
-<p>如果没有安装Homebrew，执行下面代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</div></pre></td></tr></table></figure>
+        <p><a href="http://iosre.com/t/hikari/10802" target="_blank" rel="external">本篇文章迁移到iosre</a></p>
 <p>参考：</p>
 <p><a href="http://llvm.org/docs/GettingStarted.html#getting-started-quickly-a-summary" target="_blank" rel="external">LLVM系统入门</a></p>
 <p><a href="https://github.com/Naville/Hikari/wiki" target="_blank" rel="external"><strong>Hikari</strong>  wiki</a></p>
@@ -536,17 +467,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           
             <img class="site-author-image" itemprop="image"
@@ -675,22 +597,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一步：clone"><span class="nav-number">1.</span> <span class="nav-text">第一步：clone</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二步：执行"><span class="nav-number">2.</span> <span class="nav-text">第二步：执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三步：生成Hikari-xctoolchain"><span class="nav-number">3.</span> <span class="nav-text">第三步：生成Hikari.xctoolchain</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第四步：Xcode集成"><span class="nav-number">4.</span> <span class="nav-text">第四步：Xcode集成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第五步：pass配置"><span class="nav-number">5.</span> <span class="nav-text">第五步：pass配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#错误及解决方式"><span class="nav-number">6.</span> <span class="nav-text">错误及解决方式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、报错锁定"><span class="nav-number">6.1.</span> <span class="nav-text">1、报错锁定</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、报错"><span class="nav-number">6.2.</span> <span class="nav-text">2、报错</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、报错ld-file-not-found-Library-Developer-Toolchains-Hikari-xctoolchain"><span class="nav-number">6.3.</span> <span class="nav-text">3、报错ld: file not found: /Library/Developer/Toolchains/Hikari.xctoolchain/*</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4、报错找不到Ninja"><span class="nav-number">6.4.</span> <span class="nav-text">4、报错找不到Ninja</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
