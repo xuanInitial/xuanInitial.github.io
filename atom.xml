@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xuaninitial.com/"/>
-  <updated>2018-05-03T08:19:11.601Z</updated>
+  <updated>2018-07-23T09:35:57.706Z</updated>
   <id>http://xuaninitial.com/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Crash问题总结与防护--unrecognized selector crash</title>
+    <link href="http://xuaninitial.com/2018/07/23/Crash%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%E4%B8%8E%E9%98%B2%E6%8A%A4-unrecognized-selector-crash/"/>
+    <id>http://xuaninitial.com/2018/07/23/Crash问题总结与防护-unrecognized-selector-crash/</id>
+    <published>2018-07-23T09:34:21.000Z</published>
+    <updated>2018-07-23T09:35:57.706Z</updated>
+    
+    <content type="html"><![CDATA[<p>产生原因</p><p>​    因为一个对象调用了一个不属于它方法的方法导致的。</p><p> eg:UIButton 添加了点击事件没有实现</p><p>方法调用在运行时的过程如下：</p><ol><li>首先，在相应操作的对象中的缓存方法列表中找调用的方法，如果找到，转向相应实现并执行。</li><li>如果没找到，在相应操作的对象中的方法列表中找调用的方法，如果找到，转向相应实现执行</li><li>如果没找到，去父类指针所指向的对象中执行1，2.</li><li>以此类推，如果一直到根类还没找到，转向拦截调用，走消息转发机制。</li><li>如果没有重写拦截调用的方法，程序报错。</li></ol><p>拦截调用</p><p>拦截调用就是，在找不到调用的方法程序崩溃之前，你有机会通过重写NSObject的四个方法来处理:</p><img src="/2018/07/23/Crash问题总结与防护-unrecognized-selector-crash/NSObject.png" alt="NSObject.png" title=""><ol><li>调用resolveInstanceMethod给个机会让类添加这个实现这个函数</li><li>调用forwardingTargetForSelector让别的对象去执行这个函数</li><li>调用forwardInvocation（函数执行器）灵活的将目标函数以其他形式执行。</li></ol><p>防护方案</p><p>选择了第二步forwardingTargetForSelector来做文章。原因如下：</p><ol><li>resolveInstanceMethod需要在类的本身上动态添加它本身不存在的方法，这些方法对于该类本身来说冗余的</li><li>forwardInvocation可以通过NSInvocation的形式将消息转发给多个对象，但是其开销较大，需要创建新的NSInvocation对象，并且forwardInvocation的函数经常被使用者调用，来做多层消息转发选择机制，不适合多次重写</li><li>forwardingTargetForSelector可以将消息转发给一个对象，开销较小，并且被重写的概率较低，适合重写</li></ol><p>消息转发机制里的三个步骤处理未知选择，步骤越往后，处理消息的代价就        越大。但是步骤越往前，我们越有可能拦截到系统的本来能处理的方法。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;产生原因&lt;/p&gt;
+&lt;p&gt;​    因为一个对象调用了一个不属于它方法的方法导致的。&lt;/p&gt;
+&lt;p&gt; eg:UIButton 添加了点击事件没有实现&lt;/p&gt;
+&lt;p&gt;方法调用在运行时的过程如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;首先，在相应操作的对象中的缓存方法列表中找调用的方法，如
+      
+    
+    </summary>
+    
+    
+      <category term="Objective-C" scheme="http://xuaninitial.com/tags/Objective-C/"/>
+    
+      <category term="Crash" scheme="http://xuaninitial.com/tags/Crash/"/>
+    
+  </entry>
   
   <entry>
     <title>NSURLSession请求  加gb2312编码</title>
