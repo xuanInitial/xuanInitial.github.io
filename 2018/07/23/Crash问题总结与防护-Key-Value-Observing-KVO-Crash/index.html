@@ -79,7 +79,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Objective-C,Crash," />
 
 
 
@@ -97,16 +97,18 @@
 
 
 
-<meta name="description" content="自己选择的路，跪着也要走下去......">
-<meta property="og:type" content="website">
-<meta property="og:title" content="初见">
-<meta property="og:url" content="http://xuaninitial.com/archives/index.html">
+<meta name="description" content="####KVO介绍  KVO（Key-Value Observing),键值监听。它提供一种机制：指定的被观察者的属性被改变后，KVO就会通知观察者，观察者可以做出响应。 KVO作用：利用KVO，很容易实现视图组件和数据模型的分离。当数据模型的属性值改变之后，作为监听者的视图组件就会被激发。这有利于业务逻辑和视图展示的解耦合。 KVO使用步骤：（1）注册观察，添加观察者及属性；（2）实现回调方法；">
+<meta name="keywords" content="Objective-C,Crash">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Crash问题总结与防护--Key-Value-Observing(KVO)Crash">
+<meta property="og:url" content="http://xuaninitial.com/2018/07/23/Crash问题总结与防护-Key-Value-Observing-KVO-Crash/index.html">
 <meta property="og:site_name" content="初见">
-<meta property="og:description" content="自己选择的路，跪着也要走下去......">
+<meta property="og:description" content="####KVO介绍  KVO（Key-Value Observing),键值监听。它提供一种机制：指定的被观察者的属性被改变后，KVO就会通知观察者，观察者可以做出响应。 KVO作用：利用KVO，很容易实现视图组件和数据模型的分离。当数据模型的属性值改变之后，作为监听者的视图组件就会被激发。这有利于业务逻辑和视图展示的解耦合。 KVO使用步骤：（1）注册观察，添加观察者及属性；（2）实现回调方法；">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-23T10:02:28.231Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="初见">
-<meta name="twitter:description" content="自己选择的路，跪着也要走下去......">
+<meta name="twitter:title" content="Crash问题总结与防护--Key-Value-Observing(KVO)Crash">
+<meta name="twitter:description" content="####KVO介绍  KVO（Key-Value Observing),键值监听。它提供一种机制：指定的被观察者的属性被改变后，KVO就会通知观察者，观察者可以做出响应。 KVO作用：利用KVO，很容易实现视图组件和数据模型的分离。当数据模型的属性值改变之后，作为监听者的视图组件就会被激发。这有利于业务逻辑和视图展示的解耦合。 KVO使用步骤：（1）注册观察，添加观察者及属性；（2）实现回调方法；">
 
 
 
@@ -136,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="http://xuaninitial.com/archives/"/>
+  <link rel="canonical" href="http://xuaninitial.com/2018/07/23/Crash问题总结与防护-Key-Value-Observing-KVO-Crash/"/>
 
 
 
 
 
-  <title>归档 | 初见</title>
+  <title>Crash问题总结与防护--Key-Value-Observing(KVO)Crash | 初见</title>
   
 
 
@@ -161,7 +163,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -265,416 +267,185 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      <span class="archive-page-counter">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xuaninitial.com/2018/07/23/Crash问题总结与防护-Key-Value-Observing-KVO-Crash/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xuanInitial">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="初见">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">Crash问题总结与防护--Key-Value-Observing(KVO)Crash</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-23T18:01:17+08:00">
+                2018-07-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 18 篇日志。 继续努力。
-      </span>
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/07/23/Crash问题总结与防护-Key-Value-Observing-KVO-Crash/" itemprop="url">
-              
-                <span itemprop="name">Crash问题总结与防护--Key-Value-Observing(KVO)Crash</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-23T18:01:17+08:00"
-              content="2018-07-23" >
-          07-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/07/23/Crash问题总结与防护-NSNotification-Crash/" itemprop="url">
-              
-                <span itemprop="name">Crash问题总结与防护--NSNotification Crash</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-23T17:52:13+08:00"
-              content="2018-07-23" >
-          07-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/07/23/Crash问题总结与防护-unrecognized-selector-crash/" itemprop="url">
-              
-                <span itemprop="name">Crash问题总结与防护--unrecognized selector crash</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-23T17:34:21+08:00"
-              content="2018-07-23" >
-          07-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/03/NSURLSession请求-加gb2312编码/" itemprop="url">
-              
-                <span itemprop="name">NSURLSession请求  加gb2312编码</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-03T15:53:39+08:00"
-              content="2018-05-03" >
-          05-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/01/18/配置Hikari中文文档/" itemprop="url">
-              
-                <span itemprop="name">配置Hikari中文文档</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-01-18T17:49:30+08:00"
-              content="2018-01-18" >
-          01-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/01/08/使用itms-services-协议来安装App/" itemprop="url">
-              
-                <span itemprop="name">使用itms-services 协议来安装App</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-01-08T16:12:30+08:00"
-              content="2018-01-08" >
-          01-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/23/Crash问题总结与防护-Key-Value-Observing-KVO-Crash/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/07/23/Crash问题总结与防护-Key-Value-Observing-KVO-Crash/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2017">2017</h1>
-          </div>
-        
-        
 
-        
+          
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/31/2017年终总结/" itemprop="url">
-              
-                <span itemprop="name">2017年终总结</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-31T23:45:36+08:00"
-              content="2017-12-31" >
-          12-31
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+        </div>
+      </header>
+    
 
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/24/逆向学习笔记-1/" itemprop="url">
-              
-                <span itemprop="name">逆向学习笔记_1</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-24T12:02:43+08:00"
-              content="2017-11-24" >
-          11-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/24/UITableView卡顿问题处理/" itemprop="url">
-              
-                <span itemprop="name">UITableView卡顿问题处理</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-24T11:58:10+08:00"
-              content="2017-11-24" >
-          11-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <p>####KVO介绍</p>
+<blockquote>
+<p>KVO（Key-Value Observing),键值监听。它提供一种机制：指定的被观察者的属性被改变后，KVO就会通知观察者，观察者可以做出响应。</p>
+<p>KVO作用：利用KVO，很容易实现视图组件和数据模型的分离。当数据模型的属性值改变之后，作为监听者的视图组件就会被激发。这有利于业务逻辑和视图展示的解耦合。</p>
+<p>KVO使用步骤：（1）注册观察，添加观察者及属性；（2）实现回调方法；（3）移除观察。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//注册观察者</div><div class="line">- (void)addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(void *)context</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//回调方法</div><div class="line">- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">//移除观察者</div><div class="line">- (void)removeObserver:(NSObject *)anObserver forKeyPath:(NSString *)keyPath</div><div class="line">  - (void)removeObserver:(NSObject *)observer     forKeyPath:(NSString *)keyPath  context:(void *)context</div></pre></td></tr></table></figure>
+<p>####产生原因</p>
+<p>（1）不能对不存在的属性进行kvo观测，否则会报Crash：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">uncaught exception &apos;NSUnknownKeyException&apos;, reason: &apos;[&lt;SettingData 0x600000203d50&gt; setValue:forUndefinedKey:]: this class is not key value coding-compliant for the key stockName.&apos;</div></pre></td></tr></table></figure>
+<p>（2）观察者必须实现 observeValueForKeyPath:ofObject:change:context:方法，否则Crash。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Terminating app due to uncaught exception &apos;NSInternalInconsistencyException&apos;, reason: &apos;&lt;SettingController: 0x7f811372ff70&gt;: An -observeValueForKeyPath:ofObject:change:context: message was received but not handled.</div></pre></td></tr></table></figure>
+<p>(3) 移除观察，超过addObserver的次数就会 Crash：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Terminating app due to uncaught exception &apos;NSRangeException&apos;, reason: &apos;Cannot remove an observer &lt;SettingController 0x7ff8e8703100&gt; for the key path &quot;price&quot; from &lt;SettingData 0x60800003d000&gt; because it is not registered as an observer.&apos;</div></pre></td></tr></table></figure>
+<p>####防护方案</p>
+<p>　可以让被观察对象持有一个KVO的delegate，所有和KVO相关的操作均通过delegate来进行管理，delegate通过建立一张map来维护KVO整个关系。</p>
+<p>中间层delegate的代理工作：</p>
+<p>（1）如果出现KVO重复添加观察者或者重复移除观察者（KVO注册观察者与移除观察者不匹配）的情况，delegate可以直接阻止这些非正常的操作。</p>
+<p>（2）被观察者dealloc之前，可以通过delegate自动将与自己有关的KVO关系都注销掉，避免了KVO的被观察者dealloc时仍然注册着KVO导致的crash。 </p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/24/NSInteger32位64位问题/" itemprop="url">
-              
-                <span itemprop="name">NSInteger32位64位问题</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-24T11:55:55+08:00"
-              content="2017-11-24" >
-          11-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Objective-C/" rel="tag"># Objective-C</a>
+          
+            <a href="/tags/Crash/" rel="tag"># Crash</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/23/Crash问题总结与防护-NSNotification-Crash/" rel="next" title="Crash问题总结与防护--NSNotification Crash">
+                <i class="fa fa-chevron-left"></i> Crash问题总结与防护--NSNotification Crash
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -682,6 +453,17 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -984,6 +766,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
 
   
 
@@ -1001,6 +787,18 @@
       <script id="dsq-count-scr" src="https://xuaninitial.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://xuaninitial.com/2018/07/23/Crash问题总结与防护-Key-Value-Observing-KVO-Crash/';
+          this.page.identifier = '2018/07/23/Crash问题总结与防护-Key-Value-Observing-KVO-Crash/';
+          this.page.title = 'Crash问题总结与防护--Key-Value-Observing(KVO)Crash';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://xuaninitial.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   
