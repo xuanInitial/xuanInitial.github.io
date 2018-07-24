@@ -218,16 +218,6 @@
         </li>
       
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -384,10 +374,10 @@
       
         
           
-          ####KVO介绍
+          KVO介绍
 
 KVO（Key-Value Observing),键值监听。它提供一种机制：指定的被观察者的属性被改变后，KVO就会通知观察者，观察者可以做出响应。
-KVO作用：利用KVO，很容易实现视图组件和数据模型的分离。当数据模型的属性值改变之后，作为监听者的视图组件就会被激发。这有利于
+KVO作用：利用KVO，很容易实现视图组件和数据模型的分离。当数据模型的属性值改变之后，作为监听者的视图组件就会被激发。这有利于业务逻辑
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -484,6 +474,28 @@ KVO作用：利用KVO，很容易实现视图组件和数据模型的分离。�
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Crash/" itemprop="url" rel="index">
+                    <span itemprop="name">Crash</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -524,11 +536,13 @@ KVO作用：利用KVO，很容易实现视图组件和数据模型的分离。�
       
         
           
-          ####产生原因
+          产生原因
 注册观察者后，没有在观察者dealloc时及时注销观察者，极有可能通知中心再发送通知时发送给僵尸对象而发生Crash。（iOS9以后不会Crash）
-####防护方案
+防护方案
 在宿主释放过程中嵌入我们自己的对象，使得宿主释放时顺带将我们的对象一起释放掉，从而获取dealloc的时机点
 实现
+
+（1）创建一
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -624,6 +638,28 @@ KVO作用：利用KVO，很容易实现视图组件和数据模型的分离。�
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Crash/" itemprop="url" rel="index">
+                    <span itemprop="name">Crash</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           

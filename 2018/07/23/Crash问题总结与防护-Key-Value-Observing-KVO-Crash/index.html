@@ -97,18 +97,18 @@
 
 
 
-<meta name="description" content="####KVO介绍  KVO（Key-Value Observing),键值监听。它提供一种机制：指定的被观察者的属性被改变后，KVO就会通知观察者，观察者可以做出响应。 KVO作用：利用KVO，很容易实现视图组件和数据模型的分离。当数据模型的属性值改变之后，作为监听者的视图组件就会被激发。这有利于业务逻辑和视图展示的解耦合。 KVO使用步骤：（1）注册观察，添加观察者及属性；（2）实现回调方法；">
+<meta name="description" content="KVO介绍  KVO（Key-Value Observing),键值监听。它提供一种机制：指定的被观察者的属性被改变后，KVO就会通知观察者，观察者可以做出响应。 KVO作用：利用KVO，很容易实现视图组件和数据模型的分离。当数据模型的属性值改变之后，作为监听者的视图组件就会被激发。这有利于业务逻辑和视图展示的解耦合。 KVO使用步骤：（1）注册观察，添加观察者及属性；（2）实现回调方法；（3）移">
 <meta name="keywords" content="Objective-C,Crash">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Crash问题总结与防护--Key-Value-Observing(KVO)Crash">
 <meta property="og:url" content="http://xuaninitial.com/2018/07/23/Crash问题总结与防护-Key-Value-Observing-KVO-Crash/index.html">
 <meta property="og:site_name" content="初见">
-<meta property="og:description" content="####KVO介绍  KVO（Key-Value Observing),键值监听。它提供一种机制：指定的被观察者的属性被改变后，KVO就会通知观察者，观察者可以做出响应。 KVO作用：利用KVO，很容易实现视图组件和数据模型的分离。当数据模型的属性值改变之后，作为监听者的视图组件就会被激发。这有利于业务逻辑和视图展示的解耦合。 KVO使用步骤：（1）注册观察，添加观察者及属性；（2）实现回调方法；">
+<meta property="og:description" content="KVO介绍  KVO（Key-Value Observing),键值监听。它提供一种机制：指定的被观察者的属性被改变后，KVO就会通知观察者，观察者可以做出响应。 KVO作用：利用KVO，很容易实现视图组件和数据模型的分离。当数据模型的属性值改变之后，作为监听者的视图组件就会被激发。这有利于业务逻辑和视图展示的解耦合。 KVO使用步骤：（1）注册观察，添加观察者及属性；（2）实现回调方法；（3）移">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-24T09:22:55.866Z">
+<meta property="og:updated_time" content="2018-07-24T09:34:14.541Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Crash问题总结与防护--Key-Value-Observing(KVO)Crash">
-<meta name="twitter:description" content="####KVO介绍  KVO（Key-Value Observing),键值监听。它提供一种机制：指定的被观察者的属性被改变后，KVO就会通知观察者，观察者可以做出响应。 KVO作用：利用KVO，很容易实现视图组件和数据模型的分离。当数据模型的属性值改变之后，作为监听者的视图组件就会被激发。这有利于业务逻辑和视图展示的解耦合。 KVO使用步骤：（1）注册观察，添加观察者及属性；（2）实现回调方法；">
+<meta name="twitter:description" content="KVO介绍  KVO（Key-Value Observing),键值监听。它提供一种机制：指定的被观察者的属性被改变后，KVO就会通知观察者，观察者可以做出响应。 KVO作用：利用KVO，很容易实现视图组件和数据模型的分离。当数据模型的属性值改变之后，作为监听者的视图组件就会被激发。这有利于业务逻辑和视图展示的解耦合。 KVO使用步骤：（1）注册观察，添加观察者及属性；（2）实现回调方法；（3）移">
 
 
 
@@ -215,16 +215,6 @@
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
-            
-            分类
           </a>
         </li>
       
@@ -386,7 +376,7 @@
       
 
       
-        <p>####KVO介绍</p>
+        <p><strong>KVO介绍</strong></p>
 <blockquote>
 <p>KVO（Key-Value Observing),键值监听。它提供一种机制：指定的被观察者的属性被改变后，KVO就会通知观察者，观察者可以做出响应。</p>
 <p>KVO作用：利用KVO，很容易实现视图组件和数据模型的分离。当数据模型的属性值改变之后，作为监听者的视图组件就会被激发。这有利于业务逻辑和视图展示的解耦合。</p>
@@ -395,14 +385,14 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//注册观察者</div><div class="line">- (void)addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(void *)context</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//回调方法</div><div class="line">- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context;</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">//移除观察者</div><div class="line">- (void)removeObserver:(NSObject *)anObserver forKeyPath:(NSString *)keyPath</div><div class="line">  - (void)removeObserver:(NSObject *)observer     forKeyPath:(NSString *)keyPath  context:(void *)context</div></pre></td></tr></table></figure>
-<p>####产生原因</p>
+<p><strong>产生原因</strong></p>
 <p>（1）不能对不存在的属性进行kvo观测，否则会报Crash：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">uncaught exception &apos;NSUnknownKeyException&apos;, reason: &apos;[&lt;SettingData 0x600000203d50&gt; setValue:forUndefinedKey:]: this class is not key value coding-compliant for the key stockName.&apos;</div></pre></td></tr></table></figure>
 <p>（2）观察者必须实现 observeValueForKeyPath:ofObject:change:context:方法，否则Crash。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Terminating app due to uncaught exception &apos;NSInternalInconsistencyException&apos;, reason: &apos;&lt;SettingController: 0x7f811372ff70&gt;: An -observeValueForKeyPath:ofObject:change:context: message was received but not handled.</div></pre></td></tr></table></figure>
 <p>(3) 移除观察，超过addObserver的次数就会 Crash：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Terminating app due to uncaught exception &apos;NSRangeException&apos;, reason: &apos;Cannot remove an observer &lt;SettingController 0x7ff8e8703100&gt; for the key path &quot;price&quot; from &lt;SettingData 0x60800003d000&gt; because it is not registered as an observer.&apos;</div></pre></td></tr></table></figure>
-<p>####防护方案</p>
+<p><strong>防护方案</strong></p>
 <p>　可以让被观察对象持有一个KVO的delegate，所有和KVO相关的操作均通过delegate来进行管理，delegate通过建立一张map来维护KVO整个关系。</p>
 <p>中间层delegate的代理工作：</p>
 <p>（1）如果出现KVO重复添加观察者或者重复移除观察者（KVO注册观察者与移除观察者不匹配）的情况，delegate可以直接阻止这些非正常的操作。</p>
