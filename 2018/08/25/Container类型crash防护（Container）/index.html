@@ -97,18 +97,18 @@
 
 
 
-<meta name="description" content="####Container crash 产生原因 Container 类型的crash 指的是容器类的crash，常见的有NSArray／NSMutableArray／NSDictionary／NSMutableDictionary／NSCache的crash。 一些常见的越界，插入nil，等错误操作均会导致此类crash发生。 由于产生的原因比较简单，就不展开来描述了。 该类crash虽然比较容">
+<meta name="description" content="Container crash 产生原因 Container 类型的crash 指的是容器类的crash，常见的有NSArray／NSMutableArray／NSDictionary／NSMutableDictionary／NSCache的crash。 一些常见的越界，插入nil，等错误操作均会导致此类crash发生。 由于产生的原因比较简单，就不展开来描述了。 该类crash虽然比较容易排查，">
 <meta name="keywords" content="Objective-C,Crash">
 <meta property="og:type" content="article">
 <meta property="og:title" content=" Container类型crash防护（Container）">
 <meta property="og:url" content="http://xuaninitial.com/2018/08/25/Container类型crash防护（Container）/index.html">
 <meta property="og:site_name" content="初见">
-<meta property="og:description" content="####Container crash 产生原因 Container 类型的crash 指的是容器类的crash，常见的有NSArray／NSMutableArray／NSDictionary／NSMutableDictionary／NSCache的crash。 一些常见的越界，插入nil，等错误操作均会导致此类crash发生。 由于产生的原因比较简单，就不展开来描述了。 该类crash虽然比较容">
+<meta property="og:description" content="Container crash 产生原因 Container 类型的crash 指的是容器类的crash，常见的有NSArray／NSMutableArray／NSDictionary／NSMutableDictionary／NSCache的crash。 一些常见的越界，插入nil，等错误操作均会导致此类crash发生。 由于产生的原因比较简单，就不展开来描述了。 该类crash虽然比较容易排查，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-25T12:56:10.014Z">
+<meta property="og:updated_time" content="2018-08-25T12:59:18.911Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content=" Container类型crash防护（Container）">
-<meta name="twitter:description" content="####Container crash 产生原因 Container 类型的crash 指的是容器类的crash，常见的有NSArray／NSMutableArray／NSDictionary／NSMutableDictionary／NSCache的crash。 一些常见的越界，插入nil，等错误操作均会导致此类crash发生。 由于产生的原因比较简单，就不展开来描述了。 该类crash虽然比较容">
+<meta name="twitter:description" content="Container crash 产生原因 Container 类型的crash 指的是容器类的crash，常见的有NSArray／NSMutableArray／NSDictionary／NSMutableDictionary／NSCache的crash。 一些常见的越界，插入nil，等错误操作均会导致此类crash发生。 由于产生的原因比较简单，就不展开来描述了。 该类crash虽然比较容易排查，">
 
 
 
@@ -386,10 +386,11 @@
       
 
       
-        <p>####Container crash 产生原因</p>
+        <p><strong>Container crash 产生原因</strong></p>
 <p>Container 类型的crash 指的是容器类的crash，常见的有NSArray／NSMutableArray／NSDictionary／NSMutableDictionary／NSCache的crash。 一些常见的越界，插入nil，等错误操作均会导致此类crash发生。 由于产生的原因比较简单，就不展开来描述了。</p>
 <p>该类crash虽然比较容易排查，但是其在app crash概率总比还是挺高，所以有必要对其进行防护。</p>
-<h4 id="Container-crash-防护方案"><a href="#Container-crash-防护方案" class="headerlink" title="Container crash 防护方案"></a>Container crash 防护方案</h4><p>Container crash 类型的防护方案也比较简单，针对于NSArray／NSMutableArray／NSDictionary／NSMutableDictionary／NSCache的一些常用的会导致崩溃的API进行method swizzling，然后在swizzle的新方法中加入一些条件限制和判断，从而让这些API变的安全如下：</p>
+<p><strong>Container crash 防护方案</strong></p>
+<p>Container crash 类型的防护方案也比较简单，针对于NSArray／NSMutableArray／NSDictionary／NSMutableDictionary／NSCache的一些常用的会导致崩溃的API进行method swizzling，然后在swizzle的新方法中加入一些条件限制和判断，从而让这些API变的安全如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">[self swizzlingInstance:objc_getClass(&quot;__NSPlaceholderDictionary&quot;) orginalMethod:@selector(initWithObjects:forKeys:count:) replaceMethod:NSSelectorFromString(@&quot;qiye_initWithObjects:forKeys:count:&quot;)];</div><div class="line">       </div><div class="line">       [self swizzlingInstance:objc_getClass(&quot;__NSPlaceholderDictionary&quot;) orginalMethod:@selector(dictionaryWithObjects:forKeys:count:) replaceMethod:NSSelectorFromString(@&quot;qiye_dictionaryWithObjects:forKeys:count:&quot;)];</div><div class="line">       </div><div class="line">       [self swizzlingInstance:objc_getClass(&quot;__NSDictionaryM&quot;) orginalMethod:@selector(setObject:forKey:) replaceMethod:NSSelectorFromString(@&quot;qiye_setObject:forKey:&quot;)];</div><div class="line">       </div><div class="line">       [self swizzlingInstance:objc_getClass(&quot;__NSPlaceholderArray&quot;) orginalMethod:@selector(initWithObjects:count:) replaceMethod:NSSelectorFromString(@&quot;qiye_initWithObjects:count:&quot;)];</div><div class="line">       </div><div class="line">       [self swizzlingInstance:objc_getClass(&quot;__NSArrayI&quot;) orginalMethod:@selector(objectAtIndex:) replaceMethod:NSSelectorFromString(@&quot;qiye_objectAtIndex:&quot;)];</div><div class="line">       </div><div class="line">       [self swizzlingInstance:objc_getClass(&quot;__NSArrayM&quot;) orginalMethod:@selector(addObject:) replaceMethod:NSSelectorFromString(@&quot;qiye_addObject:&quot;)];</div><div class="line">       </div><div class="line">       [self swizzlingInstance:objc_getClass(&quot;__NSArrayM&quot;) orginalMethod:@selector(insertObject:atIndex:) replaceMethod:NSSelectorFromString(@&quot;qiye_insertObject:atIndex:&quot;)];</div><div class="line">       </div><div class="line">       [self swizzlingInstance:objc_getClass(&quot;__NSArrayM&quot;) orginalMethod:@selector(objectAtIndex:) replaceMethod:NSSelectorFromString(@&quot;qiye_objectAtIndex:&quot;)];</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">+(BOOL)swizzlingInstance:(Class)clz orginalMethod:(SEL)originalSelector  replaceMethod:(SEL)replaceSelector&#123;</div><div class="line"></div><div class="line">    Method original = class_getInstanceMethod(clz, originalSelector);</div><div class="line">    Method replace = class_getInstanceMethod(clz, replaceSelector);</div><div class="line">    BOOL didAddMethod =</div><div class="line">    class_addMethod(clz,</div><div class="line">                    originalSelector,</div><div class="line">                    method_getImplementation(replace),</div><div class="line">                    method_getTypeEncoding(replace));</div><div class="line">    </div><div class="line">    if (didAddMethod) &#123;</div><div class="line">        class_replaceMethod(clz,</div><div class="line">                            replaceSelector,</div><div class="line">                            method_getImplementation(original),</div><div class="line">                            method_getTypeEncoding(original));</div><div class="line">    &#125; else &#123;</div><div class="line">        method_exchangeImplementations(original, replace);</div><div class="line">    &#125;</div><div class="line">    return YES;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
@@ -491,17 +492,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           
             <img class="site-author-image" itemprop="image"
@@ -639,22 +631,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Container-crash-防护方案"><span class="nav-number">1.</span> <span class="nav-text">Container crash 防护方案</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
