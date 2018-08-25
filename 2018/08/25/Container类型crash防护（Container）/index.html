@@ -79,7 +79,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="tools," />
+  <meta name="keywords" content="Objective-C,Crash," />
 
 
 
@@ -97,18 +97,18 @@
 
 
 
-<meta name="description" content="HomebrewLLVM混淆框架 删除brew    brew  cleanup">
-<meta name="keywords" content="tools">
+<meta name="description" content="####Container crash 产生原因 Container 类型的crash 指的是容器类的crash，常见的有NSArray／NSMutableArray／NSDictionary／NSMutableDictionary／NSCache的crash。 一些常见的越界，插入nil，等错误操作均会导致此类crash发生。 由于产生的原因比较简单，就不展开来描述了。 该类crash虽然比较容">
+<meta name="keywords" content="Objective-C,Crash">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Homebrew">
-<meta property="og:url" content="http://xuaninitial.com/2017/11/24/Homebrew/index.html">
+<meta property="og:title" content=" Container类型crash防护（Container）">
+<meta property="og:url" content="http://xuaninitial.com/2018/08/25/Container类型crash防护（Container）/index.html">
 <meta property="og:site_name" content="初见">
-<meta property="og:description" content="HomebrewLLVM混淆框架 删除brew    brew  cleanup">
+<meta property="og:description" content="####Container crash 产生原因 Container 类型的crash 指的是容器类的crash，常见的有NSArray／NSMutableArray／NSDictionary／NSMutableDictionary／NSCache的crash。 一些常见的越界，插入nil，等错误操作均会导致此类crash发生。 由于产生的原因比较简单，就不展开来描述了。 该类crash虽然比较容">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-24T03:53:05.724Z">
+<meta property="og:updated_time" content="2018-08-25T12:56:10.014Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Homebrew">
-<meta name="twitter:description" content="HomebrewLLVM混淆框架 删除brew    brew  cleanup">
+<meta name="twitter:title" content=" Container类型crash防护（Container）">
+<meta name="twitter:description" content="####Container crash 产生原因 Container 类型的crash 指的是容器类的crash，常见的有NSArray／NSMutableArray／NSDictionary／NSMutableDictionary／NSCache的crash。 一些常见的越界，插入nil，等错误操作均会导致此类crash发生。 由于产生的原因比较简单，就不展开来描述了。 该类crash虽然比较容">
 
 
 
@@ -138,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="http://xuaninitial.com/2017/11/24/Homebrew/"/>
+  <link rel="canonical" href="http://xuaninitial.com/2018/08/25/Container类型crash防护（Container）/"/>
 
 
 
 
 
-  <title>Homebrew | 初见</title>
+  <title> Container类型crash防护（Container） | 初见</title>
   
 
 
@@ -281,7 +281,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xuaninitial.com/2017/11/24/Homebrew/">
+    <link itemprop="mainEntityOfPage" href="http://xuaninitial.com/2018/08/25/Container类型crash防护（Container）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xuanInitial">
@@ -298,7 +298,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Homebrew</h1>
+          <h1 class="post-title" itemprop="name headline"> Container类型crash防护（Container）</h1>
         
 
         <div class="post-meta">
@@ -310,8 +310,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-24T11:51:08+08:00">
-                2017-11-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-25T20:51:31+08:00">
+                2018-08-25
               </time>
             
 
@@ -321,6 +321,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Crash/" itemprop="url" rel="index">
+                    <span itemprop="name">Crash</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -329,9 +351,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/11/24/Homebrew/#comments" itemprop="discussionUrl">
+                <a href="/2018/08/25/Container类型crash防护（Container）/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/11/24/Homebrew/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/08/25/Container类型crash防护（Container）/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -364,9 +386,12 @@
       
 
       
-        <h1 id="Homebrew"><a href="#Homebrew" class="headerlink" title="Homebrew"></a><a href="https://brew.sh/" target="_blank" rel="external">Homebrew</a></h1><p><a href="https://github.com/GoSSIP-SJTU/Armariris" target="_blank" rel="external">LLVM混淆框架</a></p>
-<p>删除brew   </p>
-<p>brew  cleanup</p>
+        <p>####Container crash 产生原因</p>
+<p>Container 类型的crash 指的是容器类的crash，常见的有NSArray／NSMutableArray／NSDictionary／NSMutableDictionary／NSCache的crash。 一些常见的越界，插入nil，等错误操作均会导致此类crash发生。 由于产生的原因比较简单，就不展开来描述了。</p>
+<p>该类crash虽然比较容易排查，但是其在app crash概率总比还是挺高，所以有必要对其进行防护。</p>
+<h4 id="Container-crash-防护方案"><a href="#Container-crash-防护方案" class="headerlink" title="Container crash 防护方案"></a>Container crash 防护方案</h4><p>Container crash 类型的防护方案也比较简单，针对于NSArray／NSMutableArray／NSDictionary／NSMutableDictionary／NSCache的一些常用的会导致崩溃的API进行method swizzling，然后在swizzle的新方法中加入一些条件限制和判断，从而让这些API变的安全如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">[self swizzlingInstance:objc_getClass(&quot;__NSPlaceholderDictionary&quot;) orginalMethod:@selector(initWithObjects:forKeys:count:) replaceMethod:NSSelectorFromString(@&quot;qiye_initWithObjects:forKeys:count:&quot;)];</div><div class="line">       </div><div class="line">       [self swizzlingInstance:objc_getClass(&quot;__NSPlaceholderDictionary&quot;) orginalMethod:@selector(dictionaryWithObjects:forKeys:count:) replaceMethod:NSSelectorFromString(@&quot;qiye_dictionaryWithObjects:forKeys:count:&quot;)];</div><div class="line">       </div><div class="line">       [self swizzlingInstance:objc_getClass(&quot;__NSDictionaryM&quot;) orginalMethod:@selector(setObject:forKey:) replaceMethod:NSSelectorFromString(@&quot;qiye_setObject:forKey:&quot;)];</div><div class="line">       </div><div class="line">       [self swizzlingInstance:objc_getClass(&quot;__NSPlaceholderArray&quot;) orginalMethod:@selector(initWithObjects:count:) replaceMethod:NSSelectorFromString(@&quot;qiye_initWithObjects:count:&quot;)];</div><div class="line">       </div><div class="line">       [self swizzlingInstance:objc_getClass(&quot;__NSArrayI&quot;) orginalMethod:@selector(objectAtIndex:) replaceMethod:NSSelectorFromString(@&quot;qiye_objectAtIndex:&quot;)];</div><div class="line">       </div><div class="line">       [self swizzlingInstance:objc_getClass(&quot;__NSArrayM&quot;) orginalMethod:@selector(addObject:) replaceMethod:NSSelectorFromString(@&quot;qiye_addObject:&quot;)];</div><div class="line">       </div><div class="line">       [self swizzlingInstance:objc_getClass(&quot;__NSArrayM&quot;) orginalMethod:@selector(insertObject:atIndex:) replaceMethod:NSSelectorFromString(@&quot;qiye_insertObject:atIndex:&quot;)];</div><div class="line">       </div><div class="line">       [self swizzlingInstance:objc_getClass(&quot;__NSArrayM&quot;) orginalMethod:@selector(objectAtIndex:) replaceMethod:NSSelectorFromString(@&quot;qiye_objectAtIndex:&quot;)];</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">+(BOOL)swizzlingInstance:(Class)clz orginalMethod:(SEL)originalSelector  replaceMethod:(SEL)replaceSelector&#123;</div><div class="line"></div><div class="line">    Method original = class_getInstanceMethod(clz, originalSelector);</div><div class="line">    Method replace = class_getInstanceMethod(clz, replaceSelector);</div><div class="line">    BOOL didAddMethod =</div><div class="line">    class_addMethod(clz,</div><div class="line">                    originalSelector,</div><div class="line">                    method_getImplementation(replace),</div><div class="line">                    method_getTypeEncoding(replace));</div><div class="line">    </div><div class="line">    if (didAddMethod) &#123;</div><div class="line">        class_replaceMethod(clz,</div><div class="line">                            replaceSelector,</div><div class="line">                            method_getImplementation(original),</div><div class="line">                            method_getTypeEncoding(original));</div><div class="line">    &#125; else &#123;</div><div class="line">        method_exchangeImplementations(original, replace);</div><div class="line">    &#125;</div><div class="line">    return YES;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -384,7 +409,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/tools/" rel="tag"># tools</a>
+            <a href="/tags/Objective-C/" rel="tag"># Objective-C</a>
+          
+            <a href="/tags/Crash/" rel="tag"># Crash</a>
           
         </div>
       
@@ -397,8 +424,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/15/iTerm2配色/" rel="next" title="iTerm2配色">
-                <i class="fa fa-chevron-left"></i> iTerm2配色
+              <a href="/2018/07/23/Crash问题总结与防护-Key-Value-Observing-KVO-Crash/" rel="next" title="Crash问题总结与防护--Key-Value-Observing(KVO)Crash">
+                <i class="fa fa-chevron-left"></i> Crash问题总结与防护--Key-Value-Observing(KVO)Crash
               </a>
             
           </div>
@@ -406,10 +433,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/11/24/NSInteger32位64位问题/" rel="prev" title="NSInteger32位64位问题">
-                NSInteger32位64位问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -626,7 +649,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Homebrew"><span class="nav-number">1.</span> <span class="nav-text">Homebrew</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Container-crash-防护方案"><span class="nav-number">1.</span> <span class="nav-text">Container crash 防护方案</span></a></li></ol></div>
             
 
           </div>
@@ -808,9 +831,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://xuaninitial.com/2017/11/24/Homebrew/';
-          this.page.identifier = '2017/11/24/Homebrew/';
-          this.page.title = 'Homebrew';
+          this.page.url = 'http://xuaninitial.com/2018/08/25/Container类型crash防护（Container）/';
+          this.page.identifier = '2018/08/25/Container类型crash防护（Container）/';
+          this.page.title = ' Container类型crash防护（Container）';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://xuaninitial.disqus.com/embed.js';
