@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xuaninitial.com/"/>
-  <updated>2018-10-19T11:42:00.470Z</updated>
+  <updated>2018-10-19T11:47:54.094Z</updated>
   <id>http://xuaninitial.com/</id>
   
   <author>
@@ -21,17 +21,17 @@
     <link href="http://xuaninitial.com/2018/10/19/error-Multiple-commands-produce%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"/>
     <id>http://xuaninitial.com/2018/10/19/error-Multiple-commands-produce及解决方法/</id>
     <published>2018-10-19T07:57:04.000Z</published>
-    <updated>2018-10-19T11:42:00.470Z</updated>
+    <updated>2018-10-19T11:47:54.094Z</updated>
     
-    <content type="html"><![CDATA[<p>错误</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">error: Multiple commands produce &apos;/Users/initial/Library/Developer/Xcode/DerivedData/Glaucus-cwggsmqkalmsxmhgdmywvbdfjqsz/Build/Products/Debug-iphoneos/Glaucus.app&apos;:</div><div class="line"></div><div class="line">1) Target &apos;Glaucus&apos; has create directory command with output &apos;/Users/initial/Library/Developer/Xcode/DerivedData/Glaucus-cwggsmqkalmsxmhgdmywvbdfjqsz/Build/Products/Debug-iphoneos/Glaucus.app&apos;</div><div class="line"></div><div class="line">2) That command depends on command in Target &apos;Glaucus&apos;: script phase “[CP] Copy Pods Resources”</div></pre></td></tr></table></figure><p>解决方式</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"> 修改build system</div><div class="line"></div><div class="line">1、在Xcode菜单栏 -&gt; File -&gt; Workspace Setting，将build system修改为legacy build system，</div><div class="line">2、然后clean后编译。</div></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<img src="/2018/10/19/error-Multiple-commands-produce及解决方法/1.png" alt="1.png" title=""><p>错误</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">error: Multiple commands produce &apos;/Users/initial/Library/Developer/Xcode/DerivedData/Glaucus-cwggsmqkalmsxmhgdmywvbdfjqsz/Build/Products/Debug-iphoneos/Glaucus.app&apos;:</div><div class="line"></div><div class="line">1) Target &apos;Glaucus&apos; has create directory command with output &apos;/Users/initial/Library/Developer/Xcode/DerivedData/Glaucus-cwggsmqkalmsxmhgdmywvbdfjqsz/Build/Products/Debug-iphoneos/Glaucus.app&apos;</div><div class="line"></div><div class="line">2) That command depends on command in Target &apos;Glaucus&apos;: script phase “[CP] Copy Pods Resources”</div></pre></td></tr></table></figure><p>解决方式</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"> 修改build system</div><div class="line"></div><div class="line">1、在Xcode菜单栏 -&gt; File -&gt; Workspace Setting，将build system修改为legacy build system，</div><div class="line">2、然后clean后编译。</div></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
       
       
-        
+        &lt;img src=&quot;/2018/10/19/error-Multiple-commands-produce及解决方法/1.png&quot; alt=&quot;1.png&quot; title=&quot;&quot;&gt;
 &lt;p&gt;错误&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr
       
     
     </summary>
