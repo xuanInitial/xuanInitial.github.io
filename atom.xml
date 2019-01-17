@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xuaninitial.com/"/>
-  <updated>2019-01-17T07:14:48.331Z</updated>
+  <updated>2019-01-17T07:19:44.504Z</updated>
   <id>http://xuaninitial.com/</id>
   
   <author>
@@ -21,15 +21,17 @@
     <link href="http://xuaninitial.com/2019/01/17/2018%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/"/>
     <id>http://xuaninitial.com/2019/01/17/2018年终总结/</id>
     <published>2019-01-17T07:13:27.000Z</published>
-    <updated>2019-01-17T07:14:48.331Z</updated>
+    <updated>2019-01-17T07:19:44.504Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="2018年终总结"><a href="#2018年终总结" class="headerlink" title="2018年终总结"></a>2018年终总结</h2><p>​    作为程序员，到年底都会进行一次自我反思或者总结，回过头来看看这一年自    己成长了多少。</p><p>​    18年忙忙碌碌的一年。4月份之前一直在出差，博客都没怎么更新导致今年的产出有点少8篇</p><p>​    5~7月一段颓废期（生活方面导致）</p><p>​    7月以后回归正常</p><h4 id="学习："><a href="#学习：" class="headerlink" title="学习："></a>学习：</h4><p>​    swift 系统的学习了一遍，有自己的项目，也改写了一部分公司的项目</p><p>​       逆向视频完整的看完了，了解了工具的使用，对App的逆向调试模式的思考，缺        少实践</p><p>​    flutter年底了刚开始学习</p><p>​    被朋友吐槽字写的难看苦练两个多月（有点效果吧，起码写的自己认识）    </p><h4 id="书单"><a href="#书单" class="headerlink" title="书单"></a>书单</h4><p>《解忧杂货铺》</p><blockquote><p>我们总是在选择，也总是在犹豫，其实我们自己心中已经有答案，跟着感觉走就可以了</p></blockquote><p>《拉普拉斯的魔女》 </p><blockquote><p>有时候未知也是一种幸福</p></blockquote><p>《地铁异事薄》</p><blockquote><p>书名不错</p></blockquote><p>《活着》–余华</p><blockquote><p>活着就有希望</p></blockquote><p>《眨眼之间》</p><blockquote><p>在自己擅长的领域，一眨眼做出的决定，可能和三思后行的结果一样 </p></blockquote><p>《番茄工作法图解》</p><blockquote><p>专注一件事情，合理的安排时间</p></blockquote><p>《正向沟通—— 非暴力人际沟通技巧》暂未看完</p><h4 id="2019-计划"><a href="#2019-计划" class="headerlink" title="2019 计划"></a>2019 计划</h4><ul><li>坚持博客一个月最少更新一次</li><li>继续输出开源社区，保持 GitHub 活跃；</li><li>读书；</li><li>技术积累(swift、逆向、flutter、html、算法相关的)</li></ul><p>  祝万事胜意，得偿所愿</p>]]></content>
+    <content type="html"><![CDATA[<p>​    作为程序员，到年底都会进行一次自我反思或者总结，回过头来看看这一年自    己成长了多少。</p><p>​    18年忙忙碌碌的一年。4月份之前一直在出差，博客都没怎么更新导致今年的产出有点少8篇</p><p>​    5~7月一段颓废期（生活方面导致）</p><p>​    7月以后回归正常</p><h4 id="学习："><a href="#学习：" class="headerlink" title="学习："></a>学习：</h4><p>​    swift 系统的学习了一遍，有自己的项目，也改写了一部分公司的项目</p><p>​       逆向视频完整的看完了，了解了工具的使用，对App的逆向调试模式的思考，缺        少实践</p><p>​    flutter年底了刚开始学习</p><p>​    被朋友吐槽字写的难看苦练两个多月（有点效果吧，起码写的自己认识）    </p><h4 id="书单"><a href="#书单" class="headerlink" title="书单"></a>书单</h4><p>《解忧杂货铺》</p><blockquote><p>我们总是在选择，也总是在犹豫，其实我们自己心中已经有答案，跟着感觉走就可以了</p></blockquote><p>《拉普拉斯的魔女》 </p><blockquote><p>有时候未知也是一种幸福</p></blockquote><p>《地铁异事薄》</p><blockquote><p>书名不错</p></blockquote><p>《活着》–余华</p><blockquote><p>活着就有希望</p></blockquote><p>《眨眼之间》</p><blockquote><p>在自己擅长的领域，一眨眼做出的决定，可能和三思后行的结果一样 </p></blockquote><p>《番茄工作法图解》</p><blockquote><p>专注一件事情，合理的安排时间</p></blockquote><p>《正向沟通—— 非暴力人际沟通技巧》暂未看完</p><h4 id="2019-计划"><a href="#2019-计划" class="headerlink" title="2019 计划"></a>2019 计划</h4><ul><li>坚持博客一个月最少更新一次</li><li>继续输出开源社区，保持 GitHub 活跃；</li><li>读书；</li><li>技术积累(swift、逆向、flutter、html、算法相关的)</li></ul><p>  祝万事胜意，得偿所愿</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h2 id=&quot;2018年终总结&quot;&gt;&lt;a href=&quot;#2018年终总结&quot; class=&quot;headerlink&quot; title=&quot;2018年终总结&quot;&gt;&lt;/a&gt;2018年终总结&lt;/h2&gt;&lt;p&gt;​    作为程序员，到年底都会进行一次自我反思或者总结，回过头来看看这一年自    己成长
+        &lt;p&gt;​    作为程序员，到年底都会进行一次自我反思或者总结，回过头来看看这一年自    己成长了多少。&lt;/p&gt;
+&lt;p&gt;​    18年忙忙碌碌的一年。4月份之前一直在出差，博客都没怎么更新导致今年的产出有点少8篇&lt;/p&gt;
+&lt;p&gt;​    5~7月一段颓废期（生活方面导致）&lt;/
       
     
     </summary>
@@ -256,9 +258,9 @@
     </summary>
     
     
-      <category term="tools" scheme="http://xuaninitial.com/tags/tools/"/>
-    
       <category term="Objective-C" scheme="http://xuaninitial.com/tags/Objective-C/"/>
+    
+      <category term="tools" scheme="http://xuaninitial.com/tags/tools/"/>
     
   </entry>
   
