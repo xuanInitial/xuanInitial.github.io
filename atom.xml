@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xuaninitial.com/"/>
-  <updated>2019-02-26T02:39:33.612Z</updated>
+  <updated>2019-02-26T08:32:57.071Z</updated>
   <id>http://xuaninitial.com/</id>
   
   <author>
@@ -17,11 +17,41 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>electra 越狱</title>
+    <link href="http://xuaninitial.com/2019/02/26/electra-%E8%B6%8A%E7%8B%B1/"/>
+    <id>http://xuaninitial.com/2019/02/26/electra-越狱/</id>
+    <published>2019-02-26T03:33:10.000Z</published>
+    <updated>2019-02-26T08:32:57.071Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>设备信息</strong></p><p>iPhone 6s ,系统11.3</p><p><strong>越狱前准备</strong></p><p>1、备份手机内容</p><p>2、删除下载的系统更新OTA</p><p><strong>安装Electra</strong></p><p>方法1：下载<a href="https://github.com/coolstar/electra1131" target="_blank" rel="external">源码</a> 编译直接安装</p><p>方法2：下载手机对应版本的 <a href="https://github.com/coolstar/electra-ipas" target="_blank" rel="external">.ipa</a> （我这边用的是11.3）， 用MonkeyApp新建一个项目运行安装（一个重签名的过程）</p><img src="/2019/02/26/electra-越狱/1.jpg" alt="1.jpg" title=""><p><strong>越狱</strong></p><p>打开electra  手机切换到飞行模式   点击Jailbreak 等待重启越狱</p><p>然后你的桌面上就会有Cydia图标</p><img src="/2019/02/26/electra-越狱/2.jpg" alt="2.jpg" title=""><p>问题：</p><p>打开Cydia 提示 <strong>无法加载</strong>（似乎已断开与互联网的链接）</p><img src="/2019/02/26/electra-越狱/3.jpg" alt="3.jpg" title=""><p>解决方法：</p><p>挂v  打开，点击右上角重新加载</p><p>参考：</p><p><a href="https://coolstar.org/electra/" target="_blank" rel="external">Electra官网</a></p><p><a href="https://github.com/coolstar/electra1131" target="_blank" rel="external">11.0 - 11.3.1</a></p><p><a href="https://github.com/coolstar/electra" target="_blank" rel="external">11.0 - 11.1.2</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;strong&gt;设备信息&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;iPhone 6s ,系统11.3&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;越狱前准备&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;1、备份手机内容&lt;/p&gt;
+&lt;p&gt;2、删除下载的系统更新OTA&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;安装Elect
+      
+    
+    </summary>
+    
+      <category term="iOSni" scheme="http://xuaninitial.com/categories/iOSni/"/>
+    
+    
+      <category term="iOSni" scheme="http://xuaninitial.com/tags/iOSni/"/>
+    
+  </entry>
+  
+  <entry>
     <title>flutter upgrade  报错424</title>
     <link href="http://xuaninitial.com/2019/02/26/flutter-upgrade-%E6%8A%A5%E9%94%99424/"/>
     <id>http://xuaninitial.com/2019/02/26/flutter-upgrade-报错424/</id>
     <published>2019-02-26T02:28:05.000Z</published>
-    <updated>2019-02-26T02:39:33.612Z</updated>
+    <updated>2019-02-26T02:51:46.645Z</updated>
     
     <content type="html"><![CDATA[<p>执行更新：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">flutter upgrade</div></pre></td></tr></table></figure><p>报错如下：</p><p>This is an unexpected error. Please run</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pub --trace upgrade --verbosity=error --no-packages-dir</div></pre></td></tr></table></figure><p>and include the logs in an issue on <a href="https://github.com/dart-lang/pub/issues/new" target="_blank" rel="external">https://github.com/dart-lang/pub/issues/new</a><br>Error: Unable to ‘pub upgrade’ flutter tool. Retrying in five seconds… (1 tries left)<br>Command ‘pub upgrade’ still failed after 10 tries, giving up.</p><p>解决方式：</p><p>卸载flutter SDK 重新安装 </p><p>//配置环境变量</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim ~/.bash_profile</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">export PUB_HOSTED_URL=https://pub.flutter-io.cn</div><div class="line">export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">source .bash_profile</div></pre></td></tr></table></figure><p>//下载SDK</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone -b dev https://github.com/flutter/flutter.git</div></pre></td></tr></table></figure><p>//配置SDK的环境变量</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export PATH=&quot;$PWD/flutter/bin:$PATH&quot;</div></pre></td></tr></table></figure><p> 安装</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ./flutter</div><div class="line">flutter doctor</div></pre></td></tr></table></figure><p><strong>备注：</strong>执行flutter doctor的时候，可能会报上面同样的错误，耐心等待一下，挂梯子，重新执行</p><p>xcode工具链有问题的</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">brew update</div><div class="line">        brew uninstall --ignore-dependencies libimobiledevice</div><div class="line">        brew uninstall --ignore-dependencies usbmuxd</div><div class="line">        brew install --HEAD usbmuxd</div><div class="line">        brew unlink usbmuxd</div><div class="line">        brew link usbmuxd</div><div class="line">        brew install --HEAD libimobiledevice</div><div class="line">        brew install ideviceinstaller</div></pre></td></tr></table></figure>]]></content>
     
@@ -284,9 +314,9 @@
     </summary>
     
     
-      <category term="tools" scheme="http://xuaninitial.com/tags/tools/"/>
-    
       <category term="Objective-C" scheme="http://xuaninitial.com/tags/Objective-C/"/>
+    
+      <category term="tools" scheme="http://xuaninitial.com/tags/tools/"/>
     
   </entry>
   
@@ -508,28 +538,6 @@
     
     
       <category term="Objective-C" scheme="http://xuaninitial.com/tags/Objective-C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://xuaninitial.com/2017/09/19/hello-world/"/>
-    <id>http://xuaninitial.com/2017/09/19/hello-world/</id>
-    <published>2017-09-19T05:05:31.000Z</published>
-    <updated>2017-09-19T05:05:31.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>历时3天 node npm nvm git  hexo      搭建完成了     熟悉的hello word</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;历时3天 node npm nvm git  hexo      搭建完成了     熟悉的hello word&lt;/p&gt;
-&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick 
-      
-    
-    </summary>
-    
     
   </entry>
   
