@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Objective-C," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="初见" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="简介 NSDictionary（字典）是使用 hash表来实现key和value之间的映射和存储的， hash函数设计的好坏影响着数据的查找访问效率。数据在hash表中分布的越均匀，其访问效率越高。而在Objective-C中，通常都是利用NSString 来作为键值，其内部使用的hash函数也是通过使用 NSString对象作为键值来保证数据的各个节点在hash表中均匀分布。  NSDictio">
+<meta name="keywords" content="Objective-C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NSDictionary底层实现">
+<meta property="og:url" content="http://xuaninitial.com/2019/12/12/NSDictionary底层实现/index.html">
+<meta property="og:site_name" content="初见">
+<meta property="og:description" content="简介 NSDictionary（字典）是使用 hash表来实现key和value之间的映射和存储的， hash函数设计的好坏影响着数据的查找访问效率。数据在hash表中分布的越均匀，其访问效率越高。而在Objective-C中，通常都是利用NSString 来作为键值，其内部使用的hash函数也是通过使用 NSString对象作为键值来保证数据的各个节点在hash表中均匀分布。  NSDictio">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-12T09:03:50.507Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NSDictionary底层实现">
+<meta name="twitter:description" content="简介 NSDictionary（字典）是使用 hash表来实现key和value之间的映射和存储的， hash函数设计的好坏影响着数据的查找访问效率。数据在hash表中分布的越均匀，其访问效率越高。而在Objective-C中，通常都是利用NSString 来作为键值，其内部使用的hash函数也是通过使用 NSString对象作为键值来保证数据的各个节点在hash表中均匀分布。  NSDictio">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xuaninitial.com/2019/12/12/NSDictionary底层实现/"/>
+
+
+
+
+
+  <title>NSDictionary底层实现 | 初见</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">初见</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xuaninitial.com/2019/12/12/NSDictionary底层实现/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xuanInitial">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="初见">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">NSDictionary底层实现</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-12T16:57:49+08:00">
+                2019-12-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/底层/" itemprop="url" rel="index">
+                    <span itemprop="name">底层</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/12/12/NSDictionary底层实现/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/12/12/NSDictionary底层实现/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><blockquote>
+<p>NSDictionary（字典）是使用 hash表来实现key和value之间的映射和存储的， hash函数设计的好坏影响着数据的查找访问效率。数据在hash表中分布的越均匀，其访问效率越高。而在Objective-C中，通常都是利用NSString 来作为键值，其内部使用的hash函数也是通过使用 NSString对象作为键值来保证数据的各个节点在hash表中均匀分布。</p>
+</blockquote>
+<h4 id="NSDictionary内部结构"><a href="#NSDictionary内部结构" class="headerlink" title="NSDictionary内部结构"></a>NSDictionary内部结构</h4><p><a href="https://opensource.apple.com/source/CF/CF-368/Collections.subproj/CFDictionary.c.auto.html" target="_blank" rel="external">源码地址</a></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> __CFDictionary &#123;</div><div class="line">    <span class="built_in">CFRuntimeBase</span> _base;</div><div class="line">    <span class="built_in">CFIndex</span> _count;		<span class="comment">/* number of values */</span></div><div class="line">    <span class="built_in">CFIndex</span> _capacity;		<span class="comment">/* maximum number of values */</span></div><div class="line">    <span class="built_in">CFIndex</span> _bucketsNum;	<span class="comment">/* number of slots */</span></div><div class="line">    uintptr_t _marker;</div><div class="line">    <span class="keyword">void</span> *_context;		<span class="comment">/* private */</span></div><div class="line">    <span class="built_in">CFIndex</span> _deletes;</div><div class="line">    <span class="built_in">CFOptionFlags</span> _xflags;      <span class="comment">/* bits for GC */</span></div><div class="line">    <span class="keyword">const</span> <span class="keyword">void</span> **_keys;		<span class="comment">/* can be NULL if not allocated yet */</span></div><div class="line">    <span class="keyword">const</span> <span class="keyword">void</span> **_values;	<span class="comment">/* can be NULL if not allocated yet */</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line">void CFDictionarySetValue(CFMutableDictionaryRef dict, const void *key, const void *value) &#123;</div><div class="line">    //通过match，nomatch来判断是否存在key</div><div class="line">    CFIndex match, nomatch;</div><div class="line">    const CFDictionaryKeyCallBacks *cb;</div><div class="line">    const CFDictionaryValueCallBacks *vcb;</div><div class="line">    const void *newKey, *newValue;</div><div class="line">    CFAllocatorRef allocator, keysAllocator, valuesAllocator;</div><div class="line">    CF_OBJC_FUNCDISPATCH2(__kCFDictionaryTypeID, void, dict, &quot;setObject:forKey:&quot;, value, key);</div><div class="line">    __CFGenericValidateType(dict, __kCFDictionaryTypeID);</div><div class="line">    switch (__CFDictionaryGetType(dict)) &#123;</div><div class="line">    case __kCFDictionaryMutable:</div><div class="line">	if (dict-&gt;_count == dict-&gt;_capacity || NULL == dict-&gt;_keys) &#123;</div><div class="line">	    __CFDictionaryGrow(dict, 1);</div><div class="line">	&#125;</div><div class="line">	break;</div><div class="line">    case __kCFDictionaryFixedMutable:</div><div class="line">	break;</div><div class="line">    default:</div><div class="line">	CFAssert2(__CFDictionaryGetType(dict) != __kCFDictionaryImmutable, __kCFLogAssertion, &quot;%s(): immutable dict %p passed to mutating operation&quot;, __PRETTY_FUNCTION__, dict);</div><div class="line">	break;</div><div class="line">    &#125;</div><div class="line">    __CFDictionaryFindBuckets2(dict, key, &amp;match, &amp;nomatch);</div><div class="line">    vcb = __CFDictionaryGetValueCallBacks(dict);</div><div class="line">    allocator = __CFGetAllocator(dict);</div><div class="line">    keysAllocator = (dict-&gt;_xflags &amp; __kCFDictionaryWeakKeys) ? kCFAllocatorNull : allocator;</div><div class="line">    valuesAllocator = (dict-&gt;_xflags &amp; __kCFDictionaryWeakValues) ? kCFAllocatorNull : allocator;</div><div class="line">    if (vcb-&gt;retain) &#123;</div><div class="line">	newValue = (void *)INVOKE_CALLBACK3(((const void *(*)(CFAllocatorRef, const void *, void *))vcb-&gt;retain), allocator, value, dict-&gt;_context);</div><div class="line">    &#125; else &#123;</div><div class="line">	newValue = value;</div><div class="line">    &#125;</div><div class="line">    if (kCFNotFound != match) &#123;</div><div class="line">        //key已存在，覆盖newValue</div><div class="line">	CF_OBJC_KVO_WILLCHANGE(dict, key);</div><div class="line">	if (vcb-&gt;release) &#123;</div><div class="line">	    INVOKE_CALLBACK3(((void (*)(CFAllocatorRef, const void *, void *))vcb-&gt;release), allocator, dict-&gt;_values[match], dict-&gt;_context);</div><div class="line">	&#125;</div><div class="line">	CF_WRITE_BARRIER_ASSIGN(valuesAllocator, dict-&gt;_values[match], newValue);</div><div class="line">	CF_OBJC_KVO_DIDCHANGE(dict, key);</div><div class="line">    &#125; else &#123;</div><div class="line">	CFAssert3(__kCFDictionaryFixedMutable != __CFDictionaryGetType(dict) || dict-&gt;_count &lt; dict-&gt;_capacity, __kCFLogAssertion, &quot;%s(): capacity exceeded on fixed-capacity dict %p (capacity = %d)&quot;, __PRETTY_FUNCTION__, dict, dict-&gt;_capacity);</div><div class="line">	cb = __CFDictionaryGetKeyCallBacks(dict);</div><div class="line">	if (cb-&gt;retain) &#123;</div><div class="line">	    newKey = (void *)INVOKE_CALLBACK3(((const void *(*)(CFAllocatorRef, const void *, void *))cb-&gt;retain), allocator, key, dict-&gt;_context);</div><div class="line">	&#125; else &#123;</div><div class="line">	    newKey = key;</div><div class="line">	&#125;</div><div class="line">	if (dict-&gt;_marker == (uintptr_t)newKey || ~dict-&gt;_marker == (uintptr_t)newKey) &#123;</div><div class="line">	    __CFDictionaryFindNewMarker(dict);</div><div class="line">	&#125;</div><div class="line">      // key不存在，新增value   </div><div class="line">	CF_OBJC_KVO_WILLCHANGE(dict, key);</div><div class="line">	CF_WRITE_BARRIER_ASSIGN(keysAllocator, dict-&gt;_keys[nomatch], newKey);</div><div class="line">	CF_WRITE_BARRIER_ASSIGN(valuesAllocator, dict-&gt;_values[nomatch], newValue);</div><div class="line">	dict-&gt;_count++;</div><div class="line">	CF_OBJC_KVO_DIDCHANGE(dict, key);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>查找key存储的位置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">static void __CFDictionaryFindBuckets2(CFDictionaryRef dict, const void *key, CFIndex *match, CFIndex *nomatch) &#123;</div><div class="line">    const CFDictionaryKeyCallBacks *cb = __CFDictionaryGetKeyCallBacks(dict);</div><div class="line">    //获取hash值</div><div class="line">    CFHashCode keyHash = cb-&gt;hash ? (CFHashCode)INVOKE_CALLBACK2(((CFHashCode (*)(const void *, void *))cb-&gt;hash), key, dict-&gt;_context) : (CFHashCode)key;</div><div class="line">    const void **keys = dict-&gt;_keys;</div><div class="line">    uintptr_t marker = dict-&gt;_marker;</div><div class="line">    CFIndex probe = keyHash % dict-&gt;_bucketsNum;</div><div class="line">    CFIndex probeskip = 1;	// See RemoveValue() for notes before changing this value</div><div class="line">    CFIndex start = probe;</div><div class="line">    *match = kCFNotFound;</div><div class="line">    *nomatch = kCFNotFound;</div><div class="line">    for (;;) &#123;</div><div class="line">	uintptr_t currKey = (uintptr_t)keys[probe];</div><div class="line">       //  空桶，返回nomatch，未匹配</div><div class="line">	if (marker == currKey) &#123;		/* empty */</div><div class="line">	    if (nomatch) *nomatch = probe;</div><div class="line">	    return;</div><div class="line">	&#125; else if (~marker == currKey) &#123;	/* deleted */</div><div class="line">	    if (nomatch) &#123;</div><div class="line">		*nomatch = probe;</div><div class="line">		nomatch = NULL;</div><div class="line">	    &#125;</div><div class="line">	&#125; else if (currKey == (uintptr_t)key || (cb-&gt;equal &amp;&amp; INVOKE_CALLBACK3((Boolean (*)(const void *, const void *, void*))cb-&gt;equal, (void *)currKey, key, dict-&gt;_context))) &#123;</div><div class="line">        // 匹配成功，返回match</div><div class="line">	    *match = probe;</div><div class="line">	    return;</div><div class="line">	&#125;</div><div class="line">     // 未匹配，发生碰撞，将数组下标后移，直到找到空闲区域位置</div><div class="line">	probe = probe + probeskip;</div><div class="line">    //探针％存储桶的此替代方法假定probeskip始终为正且小于存储桶数。</div><div class="line">	if (dict-&gt;_bucketsNum &lt;= probe) &#123;</div><div class="line">	    probe -= dict-&gt;_bucketsNum;</div><div class="line">	&#125;</div><div class="line">	if (start == probe) &#123;</div><div class="line">	    return;</div><div class="line">	&#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>通过源码可以看到，当有重复的key插入到字典NSDictionary时，会覆盖旧值，而集合NSSet则什么都不做，保证了里面的元素不会重复。</p>
+<p>大家都知道，字典里的键值对key-value是一一对应的关系，从数据结构可以看出，key和value是分别存储在两个不同的数组里，这里面是如何对key、value进行绑定的呢？</p>
+<p>首先<strong>key利用hash函数算出hash值，然后对数组的长度取模，得到数组下标的位置，同样将这个地址对应到values数组的下标，就匹配到相应的value</strong>。 注意到上面的这句话，要保证一点，就是<strong>keys和values这两个数组的长度要一致</strong>。所以扩容的时候，需要对keys和values两个数组一起扩容。</p>
+<p>// setValue时判断</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line">void CFDictionarySetValue(CFMutableDictionaryRef dict, const void *key, const void *value) &#123;</div><div class="line">    CFIndex match, nomatch;</div><div class="line">    const CFDictionaryKeyCallBacks *cb;</div><div class="line">    const CFDictionaryValueCallBacks *vcb;</div><div class="line">    const void *newKey, *newValue;</div><div class="line">    CFAllocatorRef allocator, keysAllocator, valuesAllocator;</div><div class="line">    CF_OBJC_FUNCDISPATCH2(__kCFDictionaryTypeID, void, dict, &quot;setObject:forKey:&quot;, value, key);</div><div class="line">    __CFGenericValidateType(dict, __kCFDictionaryTypeID);</div><div class="line">    switch (__CFDictionaryGetType(dict)) &#123;</div><div class="line">    case __kCFDictionaryMutable:</div><div class="line">      //判断</div><div class="line">	if (dict-&gt;_count == dict-&gt;_capacity || NULL == dict-&gt;_keys) &#123;</div><div class="line">	    __CFDictionaryGrow(dict, 1);</div><div class="line">	&#125;</div><div class="line">	break;</div><div class="line">    case __kCFDictionaryFixedMutable:</div><div class="line">	break;</div><div class="line">    default:</div><div class="line">	CFAssert2(__CFDictionaryGetType(dict) != __kCFDictionaryImmutable, __kCFLogAssertion, &quot;%s(): immutable dict %p passed to mutating operation&quot;, __PRETTY_FUNCTION__, dict);</div><div class="line">	break;</div><div class="line">    &#125;</div><div class="line">    __CFDictionaryFindBuckets2(dict, key, &amp;match, &amp;nomatch);</div><div class="line">    vcb = __CFDictionaryGetValueCallBacks(dict);</div><div class="line">    allocator = __CFGetAllocator(dict);</div><div class="line">    keysAllocator = (dict-&gt;_xflags &amp; __kCFDictionaryWeakKeys) ? kCFAllocatorNull : allocator;</div><div class="line">    valuesAllocator = (dict-&gt;_xflags &amp; __kCFDictionaryWeakValues) ? kCFAllocatorNull : allocator;</div><div class="line">    if (vcb-&gt;retain) &#123;</div><div class="line">	newValue = (void *)INVOKE_CALLBACK3(((const void *(*)(CFAllocatorRef, const void *, void *))vcb-&gt;retain), allocator, value, dict-&gt;_context);</div><div class="line">    &#125; else &#123;</div><div class="line">	newValue = value;</div><div class="line">    &#125;</div><div class="line">    if (kCFNotFound != match) &#123;</div><div class="line">	CF_OBJC_KVO_WILLCHANGE(dict, key);</div><div class="line">	if (vcb-&gt;release) &#123;</div><div class="line">	    INVOKE_CALLBACK3(((void (*)(CFAllocatorRef, const void *, void *))vcb-&gt;release), allocator, dict-&gt;_values[match], dict-&gt;_context);</div><div class="line">	&#125;</div><div class="line">	CF_WRITE_BARRIER_ASSIGN(valuesAllocator, dict-&gt;_values[match], newValue);</div><div class="line">	CF_OBJC_KVO_DIDCHANGE(dict, key);</div><div class="line">    &#125; else &#123;</div><div class="line">	CFAssert3(__kCFDictionaryFixedMutable != __CFDictionaryGetType(dict) || dict-&gt;_count &lt; dict-&gt;_capacity, __kCFLogAssertion, &quot;%s(): capacity exceeded on fixed-capacity dict %p (capacity = %d)&quot;, __PRETTY_FUNCTION__, dict, dict-&gt;_capacity);</div><div class="line">	cb = __CFDictionaryGetKeyCallBacks(dict);</div><div class="line">	if (cb-&gt;retain) &#123;</div><div class="line">	    newKey = (void *)INVOKE_CALLBACK3(((const void *(*)(CFAllocatorRef, const void *, void *))cb-&gt;retain), allocator, key, dict-&gt;_context);</div><div class="line">	&#125; else &#123;</div><div class="line">	    newKey = key;</div><div class="line">	&#125;</div><div class="line">	if (dict-&gt;_marker == (uintptr_t)newKey || ~dict-&gt;_marker == (uintptr_t)newKey) &#123;</div><div class="line">	    __CFDictionaryFindNewMarker(dict);</div><div class="line">	&#125;</div><div class="line">	CF_OBJC_KVO_WILLCHANGE(dict, key);</div><div class="line">	CF_WRITE_BARRIER_ASSIGN(keysAllocator, dict-&gt;_keys[nomatch], newKey);</div><div class="line">	CF_WRITE_BARRIER_ASSIGN(valuesAllocator, dict-&gt;_values[nomatch], newValue);</div><div class="line">	dict-&gt;_count++;</div><div class="line">	CF_OBJC_KVO_DIDCHANGE(dict, key);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>//扩容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line">static void __CFDictionaryGrow(CFMutableDictionaryRef dict, CFIndex numNewValues) &#123;</div><div class="line">    //保存旧的值</div><div class="line">    const void **oldkeys = dict-&gt;_keys;</div><div class="line">    const void **oldvalues = dict-&gt;_values;</div><div class="line">    CFIndex idx, oldnbuckets = dict-&gt;_bucketsNum;</div><div class="line">    CFIndex oldCount = dict-&gt;_count;</div><div class="line">    CFAllocatorRef allocator = __CFGetAllocator(dict), keysAllocator, valuesAllocator;</div><div class="line">    void *keysBase, *valuesBase;</div><div class="line">    dict-&gt;_capacity = __CFDictionaryRoundUpCapacity(oldCount + numNewValues);</div><div class="line">    dict-&gt;_bucketsNum = __CFDictionaryNumBucketsForCapacity(dict-&gt;_capacity);</div><div class="line">    dict-&gt;_deletes = 0;</div><div class="line">    if (_CFDictionaryIsSplit(dict)) &#123;   // iff GC, use split memory sometimes unscanned memory</div><div class="line">	unsigned weakOrStrong = (dict-&gt;_xflags &amp; __kCFDictionaryWeakKeys) ? AUTO_MEMORY_UNSCANNED : AUTO_MEMORY_SCANNED;</div><div class="line">	void *mem = _CFAllocatorAllocateGC(allocator, dict-&gt;_bucketsNum * sizeof(const void *), weakOrStrong);</div><div class="line">        CF_WRITE_BARRIER_BASE_ASSIGN(allocator, dict, dict-&gt;_keys, mem);</div><div class="line">        keysAllocator = (dict-&gt;_xflags &amp; __kCFDictionaryWeakKeys) ? kCFAllocatorNull : allocator;  // GC: avoids write-barrier in weak case.</div><div class="line">        keysBase = mem;</div><div class="line">	</div><div class="line">        weakOrStrong = (dict-&gt;_xflags &amp; __kCFDictionaryWeakValues) ? AUTO_MEMORY_UNSCANNED : AUTO_MEMORY_SCANNED;</div><div class="line">	mem = _CFAllocatorAllocateGC(allocator, dict-&gt;_bucketsNum * sizeof(const void *), weakOrStrong);</div><div class="line">        CF_WRITE_BARRIER_BASE_ASSIGN(allocator, dict, dict-&gt;_values, mem);</div><div class="line">        valuesAllocator = (dict-&gt;_xflags &amp; __kCFDictionaryWeakValues) ? kCFAllocatorNull : allocator; // GC: avoids write-barrier in weak case.</div><div class="line">        valuesBase = mem;</div><div class="line">    &#125; else &#123;</div><div class="line">        CF_WRITE_BARRIER_BASE_ASSIGN(allocator, dict, dict-&gt;_keys, _CFAllocatorAllocateGC(allocator, 2 * dict-&gt;_bucketsNum * sizeof(const void *), AUTO_MEMORY_SCANNED));</div><div class="line">        dict-&gt;_values = (const void **)(dict-&gt;_keys + dict-&gt;_bucketsNum);</div><div class="line">        keysAllocator = valuesAllocator = allocator;</div><div class="line">        keysBase = valuesBase = dict-&gt;_keys;</div><div class="line">    &#125;</div><div class="line">    if (NULL == dict-&gt;_keys || NULL == dict-&gt;_values) HALT;</div><div class="line">    if (__CFOASafe) __CFSetLastAllocationEventName(dict-&gt;_keys, &quot;CFDictionary (store)&quot;);</div><div class="line">    // 重新计算keys数据的hash值，存放到新的数组中</div><div class="line">    for (idx = dict-&gt;_bucketsNum; idx--;) &#123;</div><div class="line">        dict-&gt;_keys[idx] = (const void *)dict-&gt;_marker;</div><div class="line">        dict-&gt;_values[idx] = 0;</div><div class="line">    &#125;</div><div class="line">    if (NULL == oldkeys) return;</div><div class="line">    </div><div class="line">    for (idx = 0; idx &lt; oldnbuckets; idx++) &#123;</div><div class="line">        if (dict-&gt;_marker != (uintptr_t)oldkeys[idx] &amp;&amp; ~dict-&gt;_marker != (uintptr_t)oldkeys[idx]) &#123;</div><div class="line">            CFIndex match, nomatch;</div><div class="line">            __CFDictionaryFindBuckets2(dict, oldkeys[idx], &amp;match, &amp;nomatch);</div><div class="line">            CFAssert3(kCFNotFound == match, __kCFLogAssertion, &quot;%s(): two values (%p, %p) now hash to the same slot; mutable value changed while in table or hash value is not immutable&quot;, __PRETTY_FUNCTION__, oldkeys[idx], dict-&gt;_keys[match]);</div><div class="line">            if (kCFNotFound != nomatch) &#123;</div><div class="line">                CF_WRITE_BARRIER_BASE_ASSIGN(keysAllocator, keysBase, dict-&gt;_keys[nomatch], oldkeys[idx]);</div><div class="line">                CF_WRITE_BARRIER_BASE_ASSIGN(valuesAllocator, valuesBase, dict-&gt;_values[nomatch], oldvalues[idx]);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    CFAssert1(dict-&gt;_count == oldCount, __kCFLogAssertion, &quot;%s(): dict count differs after rehashing; error&quot;, __PRETTY_FUNCTION__);</div><div class="line">    _CFAllocatorDeallocateGC(allocator, oldkeys);</div><div class="line">    if (_CFDictionaryIsSplit(dict)) _CFAllocatorDeallocateGC(allocator, oldvalues);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>通过上面可以看出，字典把无序和庞大的数据进行了空间hash表对应，下次查找的复杂度接近于O(1)，但是不断扩容的空间就是其弊端，因此开放地址法最好存储的是临时需要，尽快的释放资源。</p>
+<p><strong>对于字典NSDictionary设置的key和value，key值会根据特定的hash函数算出hash值，keys和values同样多，利用hash值对数组长度取模，得到其对应的下标index，如果下标已有数据，开放定址法后移插入，如果数组达到阈值，就扩容，然后重新hash插入。这样的机制就把一些不连续的key-value值插入到能建立起关系的hash表中。</strong><br> <strong>查找的时候，key根据hash函数以及数组长度，得到下标，然后根据下标直接访问hash表的keys和values，这样查询速度就可以和连续线性存储的数据一样接近O(1)了。</strong></p>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)setObject:(<span class="keyword">id</span>)anObject forKey:(<span class="keyword">id</span> &lt;<span class="built_in">NSCopying</span>&gt;)aKey;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>要作为Key值，必须遵循NSCopying协议。也就是说在NSDictionary内部，会对aKey对象Copy一份新的。而anObject 对象在其内部是作为强引用（retain或strong)。所以在MRC下，向该方法发送消息之后，我们会向anObject发送release消息进行释放。</p>
+<p>既然知道了作为key值，必须遵循NSCopying协议，说明除了NSString对象之外，我们还可以使用其他类型对象来作为NSDictionary的 key值。不过这还不够，作为key值，该类型还必须继承于NSObject并且要重载一下两个方法：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">- (NSUInteger)hash;  </div><div class="line">- (BOOL)isEqual:(id)object;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>其中，hash 方法是用来计算该对象的 hash 值，最终的 hash 值决定了该对象在 hash 表中存储的位置。所以同样，如果想重写该方法，我们尽量设计一个能让数据分布均匀的 hash 函数。</p>
+<p><strong>所以如果对象key的hash值相同，那在hash表里面的对应的value值是相同的</strong>(value值被更新了)</p>
+<p>isEqual方法是为了通过hash值来找到对象在hash表中的位置。</p>
+</blockquote>
+<ul>
+<li>NSDictionary的KVC实现</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">@implementation NSDictionary (NSKeyValueCoding)</div><div class="line">- (id)valueForKey:(NSString*)key &#123;</div><div class="line">    if([key hasPrefix:@&quot;@&quot;])</div><div class="line">        return [super valueForKey:[key substringFromIndex:1]];</div><div class="line">    return [self objectForKey:key];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)setValue:(id)value forKey:(NSString*)key &#123;</div><div class="line">    [NSException raise:NSInvalidArgumentException format:@&quot;%@ called on immutable dictionary %@&quot;, NSStringFromSelector(_cmd), self];</div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div><div class="line"></div><div class="line"></div><div class="line">@implementation NSMutableDictionary (NSKeyValueCoding)</div><div class="line"></div><div class="line">- (void)setValue:(id)value forKey:(NSString*)key &#123;</div><div class="line">    if(value)</div><div class="line">        [self setObject:value forKey:key];</div><div class="line">    else</div><div class="line">        [self removeObjectForKey:key];</div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<ul>
+<li>setValue和setObject的区别</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">- (void)setObject:(ObjectType)anObject forKey:(KeyType &lt;NSCopying&gt;)aKey;</div><div class="line">- (void)setValue:(nullable ObjectType)value forKey:(NSString *)key;</div></pre></td></tr></table></figure>
+<p><code>setObject: ForKey</code>:是NSMutableDictionary特有的；<code>setValue: ForKey:</code>是KVC的主要方法。</p>
+<blockquote>
+<p>(1) setValue: ForKey:的value是可以为nil的（但是当value为nil的时候，会自动调用removeObject：forKey方法）；<br> setObject: ForKey:的value则不可以为nil。</p>
+<p> (2) setValue: ForKey:的key必须是不为nil的字符串类型；</p>
+<p>setObject: ForKey:的key可以是不为nil的所有继承NSCopying的类型。</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Objective-C/" rel="tag"># Objective-C</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/30/Flutter跳转原生页面/" rel="next" title="Flutter跳转原生页面">
+                <i class="fa fa-chevron-left"></i> Flutter跳转原生页面
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/12/Hash-散列函数/" rel="prev" title="Hash(散列函数)">
+                Hash(散列函数) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="/images/avatar.png"
+              alt="xuanInitial" />
+          
+            <p class="site-author-name" itemprop="name">xuanInitial</p>
+            <p class="site-description motion-element" itemprop="description">自己选择的路，跪着也要走下去......</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xuanInitial" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i></a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:xuanInitial@gmail.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i></a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.cnblogs.com/xuaninitial" target="_blank" title="博客园">
+                  
+                    <i class="fa fa-fw fa-skype"></i></a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://mayuyu.io/" title="Zhang" target="_blank">Zhang</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.alonemonkey.com/" title="Alonemonkey" target="_blank">Alonemonkey</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.desgard.com/" title="GUA" target="_blank">GUA</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://satanwoo.github.io/" title="五子棋" target="_blank">五子棋</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://halfrost.com/" title="冰霜" target="_blank">冰霜</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://everettjf.github.io/" title="everettjf" target="_blank">everettjf</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yulingtianxia.com/" title="玉令天下" target="_blank">玉令天下</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NSDictionary内部结构"><span class="nav-number">2.</span> <span class="nav-text">NSDictionary内部结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 &mdash; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xuanInitial</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://xuaninitial.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://xuaninitial.com/2019/12/12/NSDictionary底层实现/';
+          this.page.identifier = '2019/12/12/NSDictionary底层实现/';
+          this.page.title = 'NSDictionary底层实现';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://xuaninitial.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
